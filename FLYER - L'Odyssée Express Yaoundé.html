@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flyer Yaoundé — L'Odyssée Express</title>
+  <style>
+    @page {
+      size: A5 portrait;
+      margin: 0;
+    }
+
+    :root {
+      --orange: #f5821f;
+      --orange-dark: #d96d12;
+      --white: #ffffff;
+      --ink: #1a1a1a;
+      --muted: #555;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: #ddd;
+      color: var(--ink);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+  .flyer {
+      width: 148mm;
+      min-height: 210mm;
+      margin: 10px auto;
+      background: var(--white);
+      box-shadow: 0 6px 24px rgba(0,0,0,.15);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    @media print {
+      body { background: white; }
+      .flyer { margin: 0; box-shadow: none; width: 100%; min-height: 100vh; }
+      .no-print { display: none !important; }
+    }
+
+    /* Header */
+    .top {
+      background: linear-gradient(160deg, var(--orange), var(--orange-dark));
+      color: var(--white);
+      padding: 8mm 9mm 10mm;
+      text-align: center;
+    }
+
+    .city {
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin-bottom: 3mm;
+    }
+
+    .top h1 {
+      font-size: 22pt;
+      font-weight: 900;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .top h1 span {
+      display: block;
+      font-size: 13pt;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      margin-top: 2mm;
+    }
+
+    .top .hook {
+      margin-top: 4mm;
+      font-size: 9.5pt;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    .support-tag {
+      margin-top: 3mm;
+      padding-top: 2.5mm;
+      border-top: 1px solid rgba(255, 255, 255, 0.35);
+      font-size: 7pt;
+      font-weight: 500;
+      line-height: 1.35;
+      opacity: 0.95;
+    }
+
+    .hero-photo {
+      position: relative;
+      height: 34mm;
+      overflow: hidden;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+      display: block;
+    }
+
+    .hero-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.3) 100%);
+    }
+
+    /* Date block */
+    .when-where {
+      display: flex;
+      margin: -4mm 7mm 0;
+      position: relative;
+      z-index: 2;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(245,130,31,.35);
+    }
+
+    .when-where > div {
+      flex: 1;
+      background: var(--white);
+      padding: 4mm 3mm;
+      text-align: center;
+      border: 2px solid var(--orange);
+    }
+
+    .when-where > div:first-child {
+      border-right: none;
+      border-radius: 8px 0 0 8px;
+    }
+
+    .when-where > div:last-child {
+      border-radius: 0 8px 8px 0;
+    }
+
+    .wl {
+      font-size: 7pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--orange);
+    }
+
+    .wv {
+      font-size: 10.5pt;
+      font-weight: 800;
+      margin-top: 1mm;
+      line-height: 1.2;
+    }
+
+    .ws {
+      font-size: 7.5pt;
+      color: var(--muted);
+      margin-top: 1mm;
+    }
+
+    /* Body */
+    .content {
+      padding: 6mm 9mm 5mm;
+      flex: 1;
+    }
+
+    .callout {
+      background: #fff6ef;
+      border-left: 3px solid var(--orange);
+      padding: 3mm 4mm;
+      font-size: 8.5pt;
+      color: var(--muted);
+      margin-bottom: 5mm;
+      line-height: 1.45;
+    }
+
+    .callout strong { color: var(--ink); }
+
+    .humanitarian-note {
+      background: #fff8f3;
+      border: 1px solid var(--orange);
+      border-radius: 6px;
+      padding: 2.5mm 3.5mm;
+      font-size: 7.5pt;
+      color: var(--muted);
+      line-height: 1.35;
+      margin-bottom: 4mm;
+      text-align: center;
+    }
+
+    .humanitarian-note strong {
+      color: var(--orange);
+      display: block;
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1mm;
+    }
+
+    h2 {
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--orange);
+      font-weight: 800;
+      margin-bottom: 2.5mm;
+    }
+
+    ul.checks {
+      list-style: none;
+      margin-bottom: 5mm;
+    }
+
+    ul.checks li {
+      font-size: 8.5pt;
+      padding: 1.5mm 0 1.5mm 5mm;
+      position: relative;
+      line-height: 1.35;
+    }
+
+    ul.checks li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--orange);
+      font-weight: 800;
+    }
+
+    .program {
+      display: grid;
+      gap: 2mm;
+      margin-bottom: 5mm;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 14mm 1fr;
+      gap: 2mm;
+      align-items: center;
+      font-size: 8pt;
+      padding-bottom: 2mm;
+      border-bottom: 1px solid #eee;
+    }
+
+    .step:last-child { border-bottom: none; }
+
+    .step-time {
+      background: var(--orange);
+      color: white;
+      font-weight: 800;
+      font-size: 7pt;
+      text-align: center;
+      padding: 2mm 1mm;
+      border-radius: 4px;
+      line-height: 1.2;
+    }
+
+    .step strong { display: block; font-size: 8.5pt; }
+
+    .prizes {
+      background: var(--orange);
+      color: white;
+      border-radius: 8px;
+      padding: 4mm 5mm;
+      text-align: center;
+      margin-bottom: 5mm;
+    }
+
+    .prizes p {
+      font-size: 8pt;
+      line-height: 1.4;
+    }
+
+    .prizes .big {
+      font-size: 11pt;
+      font-weight: 800;
+      margin-bottom: 1mm;
+    }
+
+    .who {
+      font-size: 8pt;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 4mm;
+      line-height: 1.4;
+    }
+
+    /* Footer contact */
+    .contact-bar {
+      background: #1a1a1a;
+      color: white;
+      padding: 5mm 9mm;
+      text-align: center;
+    }
+
+    .contact-bar h3 {
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      opacity: 0.7;
+      margin-bottom: 2mm;
+    }
+
+    .contact-bar .cta {
+      display: inline-block;
+      background: var(--orange);
+      color: white;
+      font-weight: 800;
+      font-size: 9pt;
+      padding: 2.5mm 6mm;
+      border-radius: 20px;
+      margin-bottom: 3mm;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .contact-bar a {
+      color: #ffb87a;
+      text-decoration: none;
+      font-size: 8.5pt;
+      display: block;
+      line-height: 1.6;
+    }
+
+    .contact-bar .name {
+      font-size: 9pt;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 1mm;
+    }
+
+    .ifc {
+      text-align: center;
+      font-size: 6.5pt;
+      color: #999;
+      padding: 2mm 9mm 3mm;
+    }
+
+    .print-hint {
+      text-align: center;
+      padding: 10px;
+      font-size: 10pt;
+      color: #666;
+    }
+
+    .print-hint button {
+      background: var(--orange);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 11pt;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 6px;
+    }
+
+    .support-pending {
+      padding: 3.5mm 7mm 3mm;
+      border-top: 1px solid #eee;
+      background: #fff8f3;
+      text-align: center;
+    }
+
+    .support-pending h2 {
+      margin-bottom: 2mm;
+    }
+
+    .support-pending .lead {
+      font-size: 7pt;
+      color: var(--muted);
+      line-height: 1.35;
+      margin-bottom: 2mm;
+    }
+
+    .support-pending ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 7.5pt;
+      font-weight: 600;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+
+    .support-pending .disclaimer {
+      margin-top: 2mm;
+      font-size: 6pt;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.3;
+    }
+  </style>
+</head>
+<body>
+
+  <p class="print-hint no-print">
+    <strong>Partager :</strong> Ctrl+P → PDF (format <strong>A5</strong>) → envoyez le fichier par e-mail ou réseaux sociaux.
+    <br>
+    <button type="button" onclick="window.print()">Créer le PDF</button>
+  </p>
+
+  <article class="flyer">
+
+    <header class="top">
+      <p class="city">Yaoundé · Cameroun</p>
+      <h1>L'ODYSSÉE<span>EXPRESS</span></h1>
+      <p class="hook">Hackathon humanitaire &amp; gratuit — économie circulaire, innovation locale, prix pour les lauréats.</p>
+      <p class="support-tag">Soutiens sollicités (en cours) : ULB · IFC Yaoundé · Ambassade de Belgique · Min. Environnement · Min. Recherche &amp; Innovation (CM)…</p>
+    </header>
+
+    <div class="hero-photo">
+      <img src="assets/photo-equipe-hackathon.jpg" alt="Jeunes ingénieurs collaborant autour d'une table">
+    </div>
+
+    <div class="when-where">
+      <div>
+        <div class="wl">Quand</div>
+        <div class="wv">Sam. 4 juil. 2026</div>
+        <div class="ws">Journée complète</div>
+      </div>
+      <div>
+        <div class="wl">Où</div>
+        <div class="wv">Yaoundé</div>
+        <div class="ws">Institut Français du Cameroun*</div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <p class="humanitarian-note">
+        <strong>Initiative à but non lucratif</strong>
+        Participation gratuite · Mentorat offert · Prix d'émulation pour les 3 meilleurs projets étudiants
+      </p>
+
+      <p class="callout">
+        <strong>Tu es étudiant, jeune innovateur ou en situation précaire ?</strong>
+        Rejoins-nous pour une journée de création en équipe, avec mentors ingénieurs et pitch devant un jury.
+      </p>
+
+      <h2>Pourquoi participer ?</h2>
+      <ul class="checks">
+        <li>Travailler sur des défis réels de Yaoundé (déchets, ressources, ville durable)</li>
+        <li>Apprendre l'éco-conception et l'entrepreneuriat avec des mentors</li>
+        <li>Présenter ton projet et viser les prix d'émulation</li>
+        <li>Rencontrer d'autres jeunes motivés par l'innovation locale</li>
+      </ul>
+
+      <h2>Déroulement</h2>
+      <div class="program">
+        <div class="step">
+          <div class="step-time">Matin</div>
+          <div><strong>Accueil & formation des équipes</strong> Méthode hackathon, brief éco-conception</div>
+        </div>
+        <div class="step">
+          <div class="step-time">Journée</div>
+          <div><strong>Travail en groupe + mentorat</strong> Prototypage d'idées et modèles viables</div>
+        </div>
+        <div class="step">
+          <div class="step-time">Soir</div>
+          <div><strong>Pitch & remise de prix</strong> Soutien aux 3 meilleurs projets</div>
+        </div>
+      </div>
+
+      <div class="prizes">
+        <p class="big">Prix d'émulation — 100 % pour les jeunes</p>
+        <p>Micro-soutien aux 3 lauréats. Aucun profit pour les organisateurs : l'impact va aux participants.</p>
+      </div>
+
+      <p class="who">
+        <strong>Ouvert aux jeunes</strong> (étudiants, lycéens avancés, jeunes entrepreneurs) — places limitées.<br>
+        *Lieu confirmé sous réserve de validation avec l'IFC Yaoundé.
+      </p>
+
+    </div>
+
+    <section class="support-pending" aria-label="Soutiens sollicités">
+      <h2>Soutiens sollicités</h2>
+      <p class="lead">Pas de logo tant que le soutien n'est pas confirmé. Soutien logistique / humanitaire recherché (non financier).</p>
+      <ul>
+        <li>ULB · CIVIS</li>
+        <li>IFC Yaoundé</li>
+        <li>Odyssée de l'objet 48H</li>
+        <li>Féd. Wallonie-Bruxelles</li>
+        <li>Ambassade de Belgique (CM)</li>
+        <li>Min. Environnement (CM)</li>
+        <li>Min. Recherche &amp; Innovation (CM)</li>
+      </ul>
+      <p class="disclaimer">*Lieu à l'IFC confirmé sous réserve de validation.</p>
+    </section>
+
+    <footer class="contact-bar">
+      <h3>Inscriptions & informations</h3>
+      <span class="cta">Contactez l'équipe</span>
+      <a href="mailto:contact@odyssee-express.org">contact@odyssee-express.org</a>
+      <a href="mailto:gedeon.tchuisseu@odyssee-express.org">gedeon.tchuisseu@odyssee-express.org</a>
+    </footer>
+
+    <p class="ifc">L'Odyssée Express · odyssee-express.org</p>
+
+  </article>
+
+</body>
+</html>

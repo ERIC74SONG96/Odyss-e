@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 56" role="img" aria-label="Institut francais du Cameroun">
+  <circle cx="28" cy="28" r="22" fill="#0055a4"/>
+  <text x="28" y="36" text-anchor="middle" fill="#ffffff" font-family="Georgia, serif" font-size="22" font-weight="700">if</text>
+  <text x="62" y="24" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#0055a4">INSTITUT FRAN&#199;AIS</text>
+  <text x="62" y="38" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#333333">du Cameroun</text>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 48" role="img" aria-label="L'Odyssée Express">
+  <defs>
+    <style>
+      .white { fill: #ffffff; font-family: "Arial Black", Arial, sans-serif; font-weight: 900; }
+      .orange { fill: #ffffff; }
+    </style>
+  </defs>
+  <text class="white" x="0" y="18" font-size="11" letter-spacing="0.35em">L'ODYSSÉE</text>
+  <text class="white" x="0" y="42" font-size="22" letter-spacing="0.28em">EXPRESS</text>
+  <circle cx="248" cy="24" r="10" fill="none" stroke="#ffffff" stroke-width="4" opacity="0.95"/>
+</svg>

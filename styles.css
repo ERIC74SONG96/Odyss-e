@@ -82,6 +82,15 @@ img { max-width: 100%; height: auto; display: block; }
   text-decoration: none;
   color: var(--white);
   line-height: 1.1;
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo {
+  display: block;
+  height: 34px;
+  width: auto;
+  max-width: min(200px, 42vw);
 }
 
 .brand-main {
@@ -204,6 +213,13 @@ img { max-width: 100%; height: auto; display: block; }
   margin-top: 2rem;
   padding-top: 2rem;
   border-top: 1px solid #eee;
+}
+
+.contest-logo-full {
+  display: block;
+  max-width: min(420px, 92vw);
+  height: auto;
+  margin: 0 auto 1.5rem;
 }
 
 .contest-cta-row {

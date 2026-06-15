@@ -216,10 +216,14 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .contest-logo-full {
-  display: block;
-  max-width: min(420px, 92vw);
-  height: auto;
   margin: 0 auto 1.5rem;
+  max-width: min(480px, 94vw);
+}
+
+.contest-logo-svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .contest-cta-row {

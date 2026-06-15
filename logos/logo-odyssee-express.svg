@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 132" role="img" aria-label="L'Odyssée Express">
-  <defs>
-    <style>
-      .ink { fill: #1a1a1a; font-family: "Segoe UI", Arial, Helvetica, sans-serif; font-weight: 800; }
-      .ink-heavy { fill: #1a1a1a; font-family: "Segoe UI", Arial, Helvetica, sans-serif; font-weight: 900; }
-      .banner-text { fill: #ffffff; font-family: "Segoe UI", Arial, Helvetica, sans-serif; font-weight: 700; font-size: 9px; letter-spacing: 0.12em; }
-    </style>
-  </defs>
-
   <g fill="#1a1a1a">
     <circle cx="18" cy="18" r="5.5"/>
     <rect x="16.5" y="22" width="3" height="22" rx="1.5"/>
@@ -16,22 +8,14 @@
     <circle cx="21" cy="68" r="3.8"/>
     <path d="M21 71 L14 88 L28 88 Z"/>
   </g>
-
-  <text class="ink" y="28" font-size="17">
-    <tspan x="34">L'ODYSS</tspan><tspan>&#201;E</tspan>
-  </text>
-
-  <text class="ink-heavy" x="34" y="72" font-size="44" letter-spacing="-0.01em">EXPR</text>
+  <text x="34" y="28" fill="#1a1a1a" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="800">L'ODYSSÉE</text>
+  <text x="34" y="72" fill="#1a1a1a" font-family="Segoe UI, Arial, sans-serif" font-size="44" font-weight="900">EXPR</text>
   <circle cx="168" cy="58" r="22" fill="none" stroke="#f5821f" stroke-width="9"/>
-  <text class="ink-heavy" x="188" y="72" font-size="44" letter-spacing="-0.01em">ESS</text>
-
-  <path fill="none" stroke="#f5821f" stroke-width="5" stroke-linecap="round"
-        d="M430 22 A 46 46 0 1 0 388 88"/>
+  <text x="188" y="72" fill="#1a1a1a" font-family="Segoe UI, Arial, sans-serif" font-size="44" font-weight="900">ESS</text>
+  <path fill="none" stroke="#f5821f" stroke-width="5" stroke-linecap="round" d="M430 22 A 46 46 0 1 0 388 88"/>
   <polygon fill="#f5821f" points="388,88 378,96 392,98"/>
-  <g class="ink">
-    <text x="404" y="52" font-size="11" font-weight="700">8h</text>
-    <text x="396" y="78" font-size="28" font-weight="900">18h</text>
-  </g>
+  <text x="404" y="52" fill="#1a1a1a" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700">8h</text>
+  <text x="396" y="78" fill="#1a1a1a" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="900">18h</text>
   <g stroke="#f5821f" stroke-width="2.5">
     <line x1="430" y1="22" x2="430" y2="28"/>
     <line x1="458" y1="30" x2="455" y2="36"/>
@@ -42,7 +26,6 @@
     <line x1="402" y1="100" x2="405" y2="94"/>
     <line x1="388" y1="78" x2="394" y2="76"/>
   </g>
-
   <rect fill="#f5821f" x="88" y="96" width="228" height="22" rx="1"/>
-  <text class="banner-text" x="202" y="111" text-anchor="middle">GREEN HACKATHON &#183; YAOUND&#201; 2026</text>
+  <text x="202" y="111" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="9" font-weight="700" letter-spacing="1.2" text-anchor="middle">GREEN HACKATHON · YAOUNDÉ 2026</text>
 </svg>

@@ -56,7 +56,7 @@
         <div class="contest-intro">
           <p class="contest-pitch">
             Green Hackathon : mobiliser la jeunesse pour la <strong>transition écologique</strong>.
-            Un hackathon intensif de <strong>24 heures</strong> où des équipes conçoivent des solutions
+            Une journée intensive de <strong>8h à 18h</strong> où des équipes conçoivent des solutions
             d'<strong>économie circulaire</strong> face au défi des déchets à Yaoundé.
           </p>
           <p class="contest-pitch">
@@ -133,7 +133,7 @@
         <h2 class="block-title">POUR QUI ?</h2>
         <div class="block-content">
           <p>
-            Jeunes de <strong>18 à 30 ans</strong> en situation de vulnérabilité socio-économique :
+            Jeunes de <strong>18 à 30 ans</strong> de Yaoundé et environs :
             étudiants en dernière année et porteurs d'idées locaux qui n'ont pas accès aux
             ressources d'accompagnement traditionnelles.
           </p>
@@ -166,7 +166,7 @@
             le <strong>Lycée de la Cité Verte</strong> et le <strong>Collège Vogt</strong>.
           </p>
           <p>
-            <strong>Samedi 4 juillet 2026</strong> — hackathon intensif de <strong>24 heures</strong>,
+            <strong>Samedi 4 juillet 2026</strong> — de <strong>8h à 18h</strong>,
             de l'accueil des équipes au pitch et à la remise de prix.
           </p>
           <p class="footnote-inline">* Lieu définitif confirmé prochainement. La communication officielle sera lancée une fois le lieu validé.</p>
@@ -212,7 +212,7 @@
         <h2 class="block-title">COMMENT ?</h2>
         <div class="block-content">
           <p>
-            Les équipes disposeront de <strong>24 heures</strong> pour concevoir une solution innovante
+            Les équipes disposeront d'une <strong>journée de 8h à 18h</strong> pour concevoir une solution innovante
             répondant au brief du hackathon, dévoilé le matin de l'événement.
           </p>
           <p>
@@ -271,7 +271,7 @@
             </div>
           </article>
           <article class="timeline-item">
-            <time>24 h</time>
+            <time>8h–18h</time>
             <div>
               <h3>Travaux en groupe &amp; mentorat</h3>
               <p>Conception de solutions prototypables — réseau de mentors et d'ingénieurs locaux mobilisés.</p>
@@ -369,15 +369,19 @@
           </details>
           <details class="faq-item">
             <summary>Qui peut s'inscrire ?</summary>
-            <p>Jeunes de 18 à 30 ans en situation de vulnérabilité socio-économique — profils techniques, créatifs ou entrepreneuriaux. Places limitées à 50 participants.</p>
+            <p>Jeunes de 18 à 30 ans — profils techniques, créatifs ou entrepreneuriaux. Places limitées à 50 participants.</p>
           </details>
           <details class="faq-item">
             <summary>Faut-il venir en équipe ?</summary>
             <p>Vous pouvez vous inscrire seul ou en équipe. Les équipes de 10 seront complétées si besoin pour atteindre 5 équipes pluridisciplinaires.</p>
           </details>
           <details class="faq-item">
-            <summary>Quelle est la durée du hackathon ?</summary>
-            <p>Un hackathon intensif de 24 heures, à partir du samedi 4 juillet 2026, avec pitch et remise de prix en clôture.</p>
+            <summary>Quels sont les horaires ?</summary>
+            <p>De 8h à 18h, samedi 4 juillet 2026 — accueil le matin, pitch et remise de prix en fin de journée.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Comment m'inscrire ?</summary>
+            <p>Remplissez le <a href="#inscription">formulaire d'inscription</a> en bas de page. Vous recevrez une confirmation par e-mail une fois votre place validée.</p>
           </details>
           <details class="faq-item">
             <summary>Où se déroule l'événement ?</summary>
@@ -407,7 +411,85 @@
       <div class="container inscription-inner">
         <h2>Prêt à relever le défi ?</h2>
         <p>Inscription gratuite — 50 places · 30 déjà confirmées</p>
-        <a href="mailto:contact@odyssee-express.org?subject=Inscription%20L'Odyss%C3%A9e%20Express%202026" class="btn-register btn-register-lg">JE M'INSCRIS</a>
+
+        <div class="inscription-form-wrap">
+          <p class="form-intro">Remplissez le formulaire ci-dessous. Notre équipe vous confirmera votre place par e-mail.</p>
+
+          <div class="form-feedback" id="formFeedback" role="status" aria-live="polite"></div>
+
+          <form class="registration-form" id="registrationForm" novalidate>
+            <div class="hp-field" aria-hidden="true">
+              <label for="website">Ne pas remplir</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="prenom">Prénom <span class="req">*</span></label>
+                <input type="text" id="prenom" name="prenom" required autocomplete="given-name" maxlength="80">
+              </div>
+              <div class="form-field">
+                <label for="nom">Nom <span class="req">*</span></label>
+                <input type="text" id="nom" name="nom" required autocomplete="family-name" maxlength="80">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="email">E-mail <span class="req">*</span></label>
+                <input type="email" id="email" name="email" required autocomplete="email" maxlength="120">
+              </div>
+              <div class="form-field">
+                <label for="telephone">Téléphone / WhatsApp <span class="req">*</span></label>
+                <input type="tel" id="telephone" name="telephone" required autocomplete="tel" placeholder="+237 6XX XX XX XX" maxlength="30">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="profil">Profil <span class="req">*</span></label>
+                <select id="profil" name="profil" required>
+                  <option value="">— Choisir —</option>
+                  <option value="Technique (ingénierie, environnement…)">Technique (ingénierie, environnement…)</option>
+                  <option value="Créatif (design, idéation…)">Créatif (design, idéation…)</option>
+                  <option value="Entrepreneurial (leadership, gestion de projet…)">Entrepreneurial (leadership, gestion de projet…)</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="mode">Inscription <span class="req">*</span></label>
+                <select id="mode" name="mode" required>
+                  <option value="">— Choisir —</option>
+                  <option value="Seul(e) — équipe complétée le jour J">Seul(e) — équipe complétée le jour J</option>
+                  <option value="En équipe">En équipe</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field optional-hidden" id="equipeField">
+              <label for="nom_equipe">Nom de l'équipe</label>
+              <input type="text" id="nom_equipe" name="nom_equipe" maxlength="100" placeholder="Optionnel si votre équipe n'a pas encore de nom">
+            </div>
+
+            <div class="form-field">
+              <label for="etablissement">Établissement / filière</label>
+              <input type="text" id="etablissement" name="etablissement" maxlength="120" placeholder="Université, école, domaine d'études…">
+            </div>
+
+            <div class="form-field">
+              <label for="message">Message (optionnel)</label>
+              <textarea id="message" name="message" maxlength="800" placeholder="Motivation, compétences, questions…"></textarea>
+            </div>
+
+            <div class="form-consent">
+              <label>
+                <input type="checkbox" id="consent" name="consent" required value="oui">
+                J'accepte que mes données soient utilisées pour traiter mon inscription à L'Odyssée Express 2026 et pour me recontacter à ce sujet.
+              </label>
+            </div>
+
+            <button type="submit" class="btn-register btn-register-lg" id="submitBtn">ENVOYER MON INSCRIPTION</button>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -480,6 +562,83 @@
         nav.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
       });
+    });
+
+    const registrationForm = document.getElementById('registrationForm');
+    const formFeedback = document.getElementById('formFeedback');
+    const modeSelect = document.getElementById('mode');
+    const equipeField = document.getElementById('equipeField');
+    const submitBtn = document.getElementById('submitBtn');
+
+    modeSelect.addEventListener('change', () => {
+      equipeField.classList.toggle('visible', modeSelect.value === 'En équipe');
+    });
+
+    async function sendInscription(payload) {
+      const response = await fetch('/api/inscription', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (response.ok && data.ok) return true;
+
+      if (response.status === 404) {
+        const fallback = await fetch('https://formsubmit.co/ajax/contact@odyssee-express.org', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            _subject: `Inscription L'Odyssée Express — ${payload.prenom} ${payload.nom}`,
+            _template: 'table',
+            _captcha: 'false',
+            Prénom: payload.prenom,
+            Nom: payload.nom,
+            Email: payload.email,
+            Téléphone: payload.telephone,
+            Profil: payload.profil,
+            Inscription: payload.mode,
+            'Nom équipe': payload.nom_equipe || '—',
+            Établissement: payload.etablissement || '—',
+            Message: payload.message || '—',
+          }),
+        });
+        return fallback.ok;
+      }
+
+      throw new Error(data.error || 'Envoi impossible');
+    }
+
+    registrationForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      formFeedback.className = 'form-feedback';
+      formFeedback.textContent = '';
+
+      if (!registrationForm.checkValidity()) {
+        registrationForm.reportValidity();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'ENVOI EN COURS…';
+
+      const formData = new FormData(registrationForm);
+      const payload = Object.fromEntries(formData.entries());
+
+      try {
+        const sent = await sendInscription(payload);
+        if (!sent) throw new Error('Envoi impossible');
+
+        formFeedback.className = 'form-feedback visible success';
+        formFeedback.textContent = 'Inscription envoyée ! Nous vous recontacterons par e-mail pour confirmer votre place.';
+        registrationForm.reset();
+        equipeField.classList.remove('visible');
+      } catch {
+        formFeedback.className = 'form-feedback visible error';
+        formFeedback.textContent = 'Envoi impossible pour le moment. Réessayez ou écrivez à contact@odyssee-express.org.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'ENVOYER MON INSCRIPTION';
+      }
     });
   </script>
 </body>

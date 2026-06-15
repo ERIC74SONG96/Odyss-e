@@ -677,6 +677,163 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--orange-dark) !important;
 }
 
+.inscription-form-wrap {
+  max-width: 36rem;
+  margin: 0 auto;
+  text-align: left;
+  background: var(--white);
+  color: var(--ink);
+  padding: 1.75rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.inscription-form-wrap .form-intro {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+.registration-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-field label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.form-field label .req {
+  color: var(--orange);
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 0.95rem;
+  background: var(--white);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px rgba(245, 130, 31, 0.2);
+}
+
+.form-field textarea {
+  min-height: 5rem;
+  resize: vertical;
+}
+
+.form-field.optional-hidden {
+  display: none;
+}
+
+.form-field.optional-hidden.visible {
+  display: flex;
+}
+
+.form-consent {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.form-consent label {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  cursor: pointer;
+  text-transform: none;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.form-consent input {
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.registration-form .btn-register {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  margin-top: 0.25rem;
+  background: var(--orange);
+  color: var(--white) !important;
+}
+
+.registration-form .btn-register:hover:not(:disabled) {
+  background: var(--orange-dark);
+  color: var(--white) !important;
+}
+
+.registration-form .btn-register:disabled {
+  opacity: 0.65;
+  cursor: wait;
+  transform: none;
+}
+
+.form-feedback {
+  display: none;
+  padding: 0.85rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.form-feedback.visible { display: block; }
+
+.form-feedback.success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.form-feedback.error {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 560px) {
+  .form-row { grid-template-columns: 1fr; }
+  .inscription-form-wrap { padding: 1.25rem 1rem; }
+}
+
 /* —— Contact —— */
 .section-contact {
   background: #2a2a2a;

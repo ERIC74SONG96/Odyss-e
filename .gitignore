@@ -10,9 +10,8 @@ Thumbs.db
 # PDF générés localement (optionnel — décommenter pour les exclure)
 # *.pdf
 
-# IDE
-.idea/
-.vscode/
-*.log
+# Dependencies
+node_modules/
+.vercel
 
 .vercel

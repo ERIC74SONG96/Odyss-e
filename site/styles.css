@@ -194,9 +194,16 @@ img { max-width: 100%; height: auto; display: block; }
 
 .contest-pitch {
   font-size: 1.05rem;
-  max-width: 42rem;
+  max-width: none;
   margin-bottom: 1rem;
   color: var(--ink);
+}
+
+.contest-hero-cta {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
 }
 
 .contest-cta-row {
@@ -267,20 +274,32 @@ img { max-width: 100%; height: auto; display: block; }
   object-position: center 35%;
 }
 
-/* —— Block sections (Wallonie style) —— */
+/* —— Block sections (Wallonie 2-col) —— */
 .block-section {
   padding: 3rem 0;
+}
+
+.block-row {
+  display: grid;
+  grid-template-columns: minmax(160px, 30%) 1fr;
+  gap: 1.5rem 3rem;
+  align-items: start;
 }
 
 .section-alt { background: var(--bg-alt); }
 
 .block-title {
-  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-size: clamp(1.35rem, 3.2vw, 1.9rem);
   font-weight: 900;
   text-transform: uppercase;
-  line-height: 1.15;
+  line-height: 1.12;
   margin-bottom: 1.25rem;
   color: var(--ink);
+}
+
+.block-title-col {
+  color: var(--orange);
+  margin-bottom: 0;
 }
 
 .block-title span {
@@ -313,20 +332,16 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* —— Objectives —— */
-.objectives { padding: 3rem 0; }
+.objectives { padding: 3rem 0; background: var(--white); }
 
-.objectives-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
-  align-items: center;
-}
+.objectives-row { align-items: start; }
 
 .objectives-list {
-  margin-top: 1.5rem;
+  margin-top: 0;
   padding-left: 1.25rem;
   font-size: 1rem;
   color: var(--muted);
+  list-style: decimal;
 }
 
 .objectives-list li {
@@ -360,6 +375,69 @@ img { max-width: 100%; height: auto; display: block; }
 
 .lead { color: var(--muted); margin-bottom: 1rem; }
 .center { text-align: center; }
+
+/* —— Programme (modèle Wallonie) —— */
+.programme-title {
+  margin-bottom: 1.5rem;
+}
+
+.programme-table {
+  width: 100%;
+}
+
+.programme-row {
+  display: grid;
+  grid-template-columns: 120px 1fr minmax(160px, 220px);
+  align-items: center;
+  min-height: 110px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.programme-row:last-child { border-bottom: none; }
+
+.programme-lieu {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #bdc3c7;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.programme-name {
+  font-size: clamp(1.05rem, 2.2vw, 1.55rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1.15;
+  color: var(--ink);
+  padding: 0.75rem 0 0.75rem 2rem;
+  margin: 0;
+}
+
+.programme-when {
+  padding: 0.75rem 0 0.75rem 1.5rem;
+}
+
+.programme-date {
+  display: block;
+  font-size: clamp(1rem, 2vw, 1.45rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.programme-time {
+  display: block;
+  color: var(--orange);
+  font-size: clamp(1rem, 2vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.programme-footnote {
+  margin-top: 1.25rem;
+  text-align: left;
+}
 
 .timeline { max-width: 40rem; margin: 0 auto; }
 
@@ -411,6 +489,12 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* —— FAQ —— */
 .faq-list { margin-top: 1rem; }
+
+.faq-list-wide {
+  max-width: 52rem;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .faq-item {
   border: 1px solid #e0e0e0;
@@ -650,7 +734,29 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--muted);
 }
 
-/* —— Inscription banner —— */
+/* —— Inscription —— */
+.inscription-row {
+  align-items: start;
+}
+
+.inscription-heading .inscription-lead {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.inscription-form-wrap {
+  max-width: none;
+  margin: 0;
+  text-align: left;
+  background: var(--white);
+  color: var(--ink);
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+}
+
 .inscription-banner {
   background: linear-gradient(135deg, var(--orange), var(--orange-dark));
   color: var(--white);
@@ -675,17 +781,6 @@ img { max-width: 100%; height: auto; display: block; }
 .inscription-banner .btn-register:hover {
   background: #fff8f3;
   color: var(--orange-dark) !important;
-}
-
-.inscription-form-wrap {
-  max-width: 36rem;
-  margin: 0 auto;
-  text-align: left;
-  background: var(--white);
-  color: var(--ink);
-  padding: 1.75rem 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
 .inscription-form-wrap .form-intro {
@@ -963,6 +1058,27 @@ img { max-width: 100%; height: auto; display: block; }
 
   .objectives-grid { grid-template-columns: 1fr; }
   .objectives-visual { order: -1; }
+
+  .block-row,
+  .inscription-row,
+  .objectives-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .programme-row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    min-height: 0;
+    padding: 1.25rem 0;
+  }
+
+  .programme-name,
+  .programme-when {
+    padding-left: 0;
+  }
+
+  .programme-lieu { text-align: left; }
 
   .hero-image img { height: 240px; }
 

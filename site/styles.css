@@ -226,6 +226,115 @@ img { max-width: 100%; height: auto; display: block; }
   height: auto;
 }
 
+/* —— Logo Express (HTML + SVG graphique) —— */
+.logo-express {
+  display: grid;
+  grid-template-columns: 36px 1fr minmax(72px, 92px);
+  align-items: center;
+  gap: 0.35rem 0.85rem;
+  max-width: min(520px, 96vw);
+  margin: 0 auto 1.5rem;
+  text-align: left;
+}
+
+.logo-express-arm {
+  width: 36px;
+  height: auto;
+  align-self: start;
+  margin-top: 0.15rem;
+}
+
+.logo-express-top {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  line-height: 1.1;
+  margin: 0 0 0.15rem;
+}
+
+.logo-express-main {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  font-size: clamp(2.1rem, 7.5vw, 2.85rem);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.logo-express-ring {
+  display: inline-block;
+  width: 0.78em;
+  height: 0.78em;
+  border: 0.14em solid var(--orange);
+  border-radius: 50%;
+  margin: 0 0.04em;
+  flex-shrink: 0;
+}
+
+.logo-express-tag {
+  display: inline-block;
+  margin: 0.65rem 0 0;
+  padding: 0.38rem 0.85rem;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+}
+
+.logo-express-clock {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  align-self: center;
+}
+
+.logo-express-clock-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.logo-express-time {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.logo-express-time-top {
+  top: 28%;
+  font-size: 0.7rem;
+}
+
+.logo-express-time-bottom {
+  top: 52%;
+  font-size: 1.35rem;
+}
+
+@media (max-width: 520px) {
+  .logo-express {
+    grid-template-columns: 28px 1fr minmax(56px, 72px);
+    gap: 0.25rem 0.5rem;
+  }
+
+  .logo-express-arm { width: 28px; }
+
+  .logo-express-clock {
+    width: 72px;
+    height: 72px;
+  }
+
+  .logo-express-time-bottom { font-size: 1.1rem; }
+}
+
 .contest-cta-row {
   display: flex;
   align-items: center;

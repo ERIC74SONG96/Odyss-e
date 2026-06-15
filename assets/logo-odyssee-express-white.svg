@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 40" role="img" aria-label="L'Odyssée Express">
-  <text x="0" y="14" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" letter-spacing="3">L'ODYSSÉE</text>
-  <text x="0" y="36" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="900" letter-spacing="5">EXPRESS</text>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xhtml="http://www.w3.org/1999/xhtml" viewBox="0 0 240 40" role="img" aria-label="L'Odyssée Express">
+  <foreignObject x="0" y="0" width="220" height="40">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:'Segoe UI',Arial,sans-serif;color:#fff;margin:0">
+      <div style="font-size:11px;font-weight:800;letter-spacing:0.22em">L'ODYSSÉE</div>
+      <div style="font-size:22px;font-weight:900;letter-spacing:0.24em;line-height:1.1">EXPRESS</div>
+    </div>
+  </foreignObject>
   <circle cx="224" cy="20" r="9" fill="none" stroke="#ffffff" stroke-width="3.5"/>
 </svg>

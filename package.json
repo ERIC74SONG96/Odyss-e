@@ -4,5 +4,8 @@
   "version": "1.0.0",
   "scripts": {
     "build": "node -e \"console.log('static site')\""
+  },
+  "devDependencies": {
+    "vercel": "^53.4.0"
   }
 }

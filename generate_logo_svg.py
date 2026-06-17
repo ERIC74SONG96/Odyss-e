@@ -124,14 +124,24 @@ def build_full_logo(ink: str = "#1a1a1a", orange: str = "#f5821f") -> str:
     time8, w8 = text_paths("8h", FONT_BOLD, 11, 404, 52)
     time18, _ = text_paths("18h", FONT_BLACK, 28, 404 + (80 - w8) / 2 - 8, 78)
 
-    banner_rect = f'  <rect fill="{orange}" x="88" y="96" width="228" height="22" rx="1"/>'
+    banner_text = "LA COMPÉTITION D'ÉCO-CONCEPTION · YAOUNDÉ 2026"
+    banner_size = 8.5
+    banner_spacing = 0.6
+    _, banner_w = text_paths(banner_text, FONT_BOLD, banner_size, 0, 0, banner_spacing)
+    pad_x = 10
+    rect_x = 34
+    rect_w = banner_w + 2 * pad_x
+    banner_rect = (
+        f'  <rect fill="{orange}" x="{rect_x}" y="96" '
+        f'width="{rect_w:.0f}" height="22" rx="1"/>'
+    )
     banner, _ = text_paths(
-        "GREEN HACKATHON · YAOUNDÉ 2026",
+        banner_text,
         FONT_BOLD,
-        9,
-        92,
-        112,
-        letter_spacing=8,
+        banner_size,
+        rect_x + pad_x,
+        111,
+        letter_spacing=banner_spacing,
     )
 
     label = "L'Odyss\u00e9e Express"

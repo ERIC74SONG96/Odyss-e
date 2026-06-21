@@ -208,6 +208,70 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--ink);
 }
 
+.event-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0 0;
+}
+
+.event-overview-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+  min-height: 240px;
+  padding: 1.5rem;
+  border-radius: 4px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.event-overview-card h2 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.event-overview-card p {
+  font-size: 1.02rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.event-overview-terrain {
+  background: #2e7d32;
+  color: var(--white);
+}
+
+.event-overview-innovation {
+  background: #f58200;
+  color: #111;
+}
+
+.event-overview-card strong {
+  color: inherit;
+}
+
+.event-card-link {
+  align-self: flex-start;
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: 4px;
+}
+
+.event-card-link:hover {
+  background: var(--ink);
+  color: var(--white);
+}
+
 .contest-hero-cta {
   text-align: center;
   margin-top: 2rem;
@@ -1207,6 +1271,10 @@ img { max-width: 100%; height: auto; display: block; }
     padding: 0.75rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     width: 100%;
+  }
+
+  .event-overview-grid {
+    grid-template-columns: 1fr;
   }
 
   .objectives-grid { grid-template-columns: 1fr; }

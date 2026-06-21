@@ -536,11 +536,12 @@ img { max-width: 100%; height: auto; display: block; }
 
 .programme-lieu {
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  color: #bdc3c7;
+  color: var(--orange-dark);
   text-transform: uppercase;
   letter-spacing: 0.06em;
+  line-height: 1.35;
 }
 
 .programme-name {
@@ -731,6 +732,19 @@ img { max-width: 100%; height: auto; display: block; }
   width: 60%;
   background: linear-gradient(90deg, var(--orange), var(--orange-dark));
   border-radius: 999px;
+}
+
+.event-kicker {
+  display: inline-block;
+  margin-bottom: 1rem !important;
+  padding: 0.35rem 0.7rem;
+  background: var(--orange);
+  color: var(--white) !important;
+  font-size: 0.78rem !important;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 4px;
 }
 
 /* —— Profils —— */

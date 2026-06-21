@@ -26,14 +26,19 @@ export default async function handler(req, res) {
   const nom = sanitize(body.nom, 80);
   const email = sanitize(body.email, 120);
   const telephone = sanitize(body.telephone, 30);
+  const evenement = sanitize(body.evenement, 80) || 'concours_eco_conception';
   const profil = sanitize(body.profil, 120);
   const mode = sanitize(body.mode, 120);
   const nomEquipe = sanitize(body.nom_equipe, 100);
   const etablissement = sanitize(body.etablissement, 120);
+  const age = sanitize(String(body.age || ''), 3);
+  const quartier = sanitize(body.quartier, 120);
+  const disponibilite = sanitize(body.disponibilite, 80);
+  const groupe = sanitize(body.groupe, 80);
   const message = sanitize(body.message, 800);
   const consent = body.consent === 'oui' || body.consent === true;
 
-  if (!prenom || !nom || !email || !telephone || !profil || !mode) {
+  if (!prenom || !nom || !email || !telephone) {
     return res.status(400).json({ ok: false, error: 'Champs obligatoires manquants' });
   }
 
@@ -45,20 +50,53 @@ export default async function handler(req, res) {
     return res.status(400).json({ ok: false, error: 'Consentement requis' });
   }
 
-  const payload = {
-    _subject: `Inscription L'Odyssée Express — ${prenom} ${nom}`,
-    _template: 'table',
-    _captcha: 'false',
-    Prénom: prenom,
-    Nom: nom,
-    Email: email,
-    Téléphone: telephone,
-    Profil: profil,
-    Inscription: mode,
-    'Nom équipe': nomEquipe || '—',
-    Établissement: etablissement || '—',
-    Message: message || '—',
-  };
+  let payload;
+
+  if (evenement === 'operation_quartier_propre') {
+    if (!disponibilite) {
+      return res.status(400).json({ ok: false, error: 'Disponibilité requise' });
+    }
+
+    payload = {
+      _subject: `Inscription bénévole 3 juillet — ${prenom} ${nom}`,
+      _template: 'table',
+      _captcha: 'false',
+      Événement: 'Opération Quartier Propre',
+      Date: 'Vendredi 3 juillet 2026',
+      Lieu: 'Cité Verte, Yaoundé',
+      Prénom: prenom,
+      Nom: nom,
+      Email: email,
+      Téléphone: telephone,
+      Âge: age || '—',
+      'Quartier / commune': quartier || '—',
+      Disponibilité: disponibilite,
+      Groupe: groupe || '—',
+      Message: message || '—',
+    };
+  } else {
+    if (!profil || !mode) {
+      return res.status(400).json({ ok: false, error: 'Champs obligatoires manquants' });
+    }
+
+    payload = {
+      _subject: `Inscription concours 4 juillet — ${prenom} ${nom}`,
+      _template: 'table',
+      _captcha: 'false',
+      Événement: "Concours d'éco-conception",
+      Date: 'Samedi 4 juillet 2026',
+      Lieu: 'Lycée technique et Commercial de Yaoundé',
+      Prénom: prenom,
+      Nom: nom,
+      Email: email,
+      Téléphone: telephone,
+      Profil: profil,
+      Inscription: mode,
+      'Nom équipe': nomEquipe || '—',
+      Établissement: etablissement || '—',
+      Message: message || '—',
+    };
+  }
 
   try {
     const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(INSCRIPTION_EMAIL)}`, {

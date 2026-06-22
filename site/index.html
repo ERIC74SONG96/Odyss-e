@@ -395,16 +395,12 @@
         </div>
 
         <div class="inscription-form-wrap">
-          <p class="form-intro">Inscrivez-vous pour participer à la journée de terrain du vendredi 3 juillet 2026.</p>
+          <p class="form-intro">Inscrivez-vous pour participer à la journée de terrain du vendredi 3 juillet 2026. Le formulaire ouvrira un e-mail prérempli à envoyer à notre équipe.</p>
 
           <div class="form-feedback" id="volunteerFeedback" role="status" aria-live="polite"></div>
 
-          <form class="registration-form" id="volunteerForm" novalidate method="POST" action="https://formsubmit.co/contact@odyssee-express.org">
+          <form class="registration-form" id="volunteerForm" novalidate method="POST" action="mailto:contact@odyssee-express.org?subject=Inscription%20b%C3%A9n%C3%A9vole%203%20juillet" enctype="text/plain">
             <input type="hidden" name="evenement" value="operation_quartier_propre">
-            <input type="hidden" name="_subject" value="Inscription bénévole 3 juillet">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" value="https://odyssee-express.org/?benevole=envoyee#inscription-3-juillet">
 
             <div class="hp-field" aria-hidden="true">
               <label for="volunteerWebsite">Ne pas remplir</label>
@@ -489,16 +485,12 @@
         </div>
 
         <div class="inscription-form-wrap">
-          <p class="form-intro">Remplissez le formulaire ci-dessous. Notre équipe vous confirmera votre place par e-mail.</p>
+          <p class="form-intro">Remplissez le formulaire ci-dessous. Il ouvrira un e-mail prérempli ; notre équipe vous confirmera ensuite votre place par e-mail et ajoutera votre inscription à la liste.</p>
 
           <div class="form-feedback" id="formFeedback" role="status" aria-live="polite"></div>
 
-          <form class="registration-form" id="registrationForm" novalidate method="POST" action="https://formsubmit.co/contact@odyssee-express.org">
+          <form class="registration-form" id="registrationForm" novalidate method="POST" action="mailto:contact@odyssee-express.org?subject=Inscription%20concours%204%20juillet" enctype="text/plain">
             <input type="hidden" name="evenement" value="concours_eco_conception">
-            <input type="hidden" name="_subject" value="Inscription concours 4 juillet">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" value="https://odyssee-express.org/?inscription=envoyee#inscription">
 
             <div class="hp-field" aria-hidden="true">
               <label for="website">Ne pas remplir</label>
@@ -659,172 +651,105 @@
       equipeField.classList.toggle('visible', modeSelect.value === 'En équipe');
     });
 
-    function buildFallbackPayload(payload) {
+    const contactEmail = 'contact@odyssee-express.org';
+
+    function line(label, value) {
+      return `${label}: ${value || '—'}`;
+    }
+
+    function buildEmail(payload) {
       if (payload.evenement === 'operation_quartier_propre') {
         return {
-          _subject: `Inscription bénévole 3 juillet — ${payload.prenom} ${payload.nom}`,
-          _template: 'table',
-          _captcha: 'false',
-          Événement: 'Opération Quartier Propre',
-          Date: 'Vendredi 3 juillet 2026',
-          Lieu: 'Cité Verte, Yaoundé',
-          Prénom: payload.prenom,
-          Nom: payload.nom,
-          Email: payload.email,
-          Téléphone: payload.telephone,
-          Âge: payload.age || '—',
-          'Quartier / commune': payload.quartier || '—',
-          Disponibilité: payload.disponibilite,
-          Groupe: payload.groupe || '—',
-          Message: payload.message || '—',
+          subject: `Inscription bénévole 3 juillet — ${payload.prenom} ${payload.nom}`,
+          body: [
+            'Bonjour,',
+            '',
+            "Je souhaite m'inscrire comme bénévole à l'Opération Quartier Propre du 3 juillet 2026.",
+            '',
+            line('Prénom', payload.prenom),
+            line('Nom', payload.nom),
+            line('E-mail', payload.email),
+            line('Téléphone / WhatsApp', payload.telephone),
+            line('Âge', payload.age),
+            line('Quartier / commune', payload.quartier),
+            line('Disponibilité', payload.disponibilite),
+            line('Je viens', payload.groupe),
+            line('Message', payload.message),
+            '',
+            "Merci de confirmer mon inscription et de m'ajouter à la liste des participants.",
+          ].join('\n'),
         };
       }
 
       return {
-        _subject: `Inscription concours 4 juillet — ${payload.prenom} ${payload.nom}`,
-        _template: 'table',
-        _captcha: 'false',
-        Événement: "Concours d'éco-conception",
-        Date: 'Samedi 4 juillet 2026',
-        Lieu: 'Lycée technique et Commercial de Yaoundé',
-        Prénom: payload.prenom,
-        Nom: payload.nom,
-        Email: payload.email,
-        Téléphone: payload.telephone,
-        Profil: payload.profil,
-        Inscription: payload.mode,
-        'Nom équipe': payload.nom_equipe || '—',
-        Établissement: payload.etablissement || '—',
-        Message: payload.message || '—',
+        subject: `Inscription concours 4 juillet — ${payload.prenom} ${payload.nom}`,
+        body: [
+          'Bonjour,',
+          '',
+          "Je souhaite m'inscrire au concours d'éco-conception L'Odyssée Express du 4 juillet 2026.",
+          '',
+          line('Prénom', payload.prenom),
+          line('Nom', payload.nom),
+          line('E-mail', payload.email),
+          line('Téléphone / WhatsApp', payload.telephone),
+          line('Profil', payload.profil),
+          line('Inscription', payload.mode),
+          line("Nom de l'équipe", payload.nom_equipe),
+          line('Établissement / filière', payload.etablissement),
+          line('Message', payload.message),
+          '',
+          "Merci de confirmer mon inscription et de m'ajouter à la liste des participants.",
+        ].join('\n'),
       };
     }
 
-    function updateFallbackReturnUrl(form, payload) {
-      const isVolunteer = payload.evenement === 'operation_quartier_propre';
-      const url = new URL(window.location.href);
-      const nextInput = form.querySelector('input[name="_next"]');
-      url.searchParams.set(isVolunteer ? 'benevole' : 'inscription', 'envoyee');
-      url.hash = isVolunteer ? 'inscription-3-juillet' : 'inscription';
-      if (nextInput) nextInput.value = url.toString();
+    function buildMailto(payload) {
+      const email = buildEmail(payload);
+      return `mailto:${contactEmail}?subject=${encodeURIComponent(email.subject)}&body=${encodeURIComponent(email.body)}`;
     }
 
-    function submitNativeFallback(form, payload) {
-      updateFallbackReturnUrl(form, payload);
-      form.method = 'POST';
-      form.action = 'https://formsubmit.co/contact@odyssee-express.org';
-      form.querySelectorAll('[data-fallback-field="true"]').forEach((input) => input.remove());
-
-      Object.entries(buildFallbackPayload(payload)).forEach(([name, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = name;
-        input.value = value;
-        input.setAttribute('data-fallback-field', 'true');
-        form.appendChild(input);
-      });
-
-      HTMLFormElement.prototype.submit.call(form);
-      return 'redirecting';
-    }
-
-    async function sendInscription(payload, form) {
-      let response;
-
-      try {
-        response = await fetch('/api/inscription', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify(payload),
-        });
-      } catch {
-        return submitNativeFallback(form, payload);
-      }
-
-      const data = await response.json().catch(() => null);
-      if (response.ok && data && data.ok) return true;
-
-      if (response.status >= 400 && response.status < 500 && response.status !== 404) {
-        throw new Error((data && data.error) || 'Envoi impossible');
-      }
-
-      return submitNativeFallback(form, payload);
-    }
-
-    function setupInscriptionForm(form, feedback, submitBtn, successText, afterReset) {
-      form.addEventListener('submit', async (event) => {
+    function setupInscriptionForm(form, feedback, submitBtn, afterSubmit) {
+      form.addEventListener('submit', (event) => {
         event.preventDefault();
         feedback.className = 'form-feedback';
-        feedback.textContent = '';
+        feedback.replaceChildren();
 
         if (!form.checkValidity()) {
           form.reportValidity();
           return;
         }
 
-        const defaultText = submitBtn.dataset.defaultText || submitBtn.textContent;
-        submitBtn.dataset.defaultText = defaultText;
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'ENVOI EN COURS…';
-
         const formData = new FormData(form);
         const payload = Object.fromEntries(formData.entries());
+        const mailto = buildMailto(payload);
+        const mailLink = document.createElement('a');
 
-        try {
-          const sent = await sendInscription(payload, form);
-          if (sent === 'redirecting') {
-            feedback.className = 'form-feedback visible success';
-            feedback.textContent = 'Redirection vers l’envoi sécurisé en cours…';
-            return;
-          }
-          if (!sent) throw new Error('Envoi impossible');
+        mailLink.href = mailto;
+        mailLink.textContent = 'cliquez ici pour ouvrir l’e-mail';
 
-          feedback.className = 'form-feedback visible success';
-          feedback.textContent = successText;
-          form.reset();
-          if (afterReset) afterReset();
-        } catch (error) {
-          feedback.className = 'form-feedback visible error';
-          feedback.textContent = (error && error.message) || 'Envoi impossible pour le moment. Réessayez ou écrivez à contact@odyssee-express.org.';
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.textContent = defaultText;
-        }
+        feedback.className = 'form-feedback visible success';
+        feedback.append(
+          'Votre messagerie va s’ouvrir avec un e-mail prérempli. Envoyez cet e-mail pour finaliser la demande. Si rien ne s’ouvre, ',
+          mailLink,
+          '.'
+        );
+        if (afterSubmit) afterSubmit();
+        window.location.href = mailto;
       });
-
-      const eventInput = form.querySelector('input[name="evenement"]');
-      updateFallbackReturnUrl(form, { evenement: eventInput ? eventInput.value : '' });
     }
 
     setupInscriptionForm(
       volunteerForm,
       volunteerFeedback,
-      volunteerSubmitBtn,
-      'Inscription bénévole envoyée ! Nous vous recontacterons pour confirmer les informations pratiques du 3 juillet.'
+      volunteerSubmitBtn
     );
 
     setupInscriptionForm(
       concoursForm,
       concoursFeedback,
       concoursSubmitBtn,
-      'Inscription envoyée ! Nous vous recontacterons par e-mail pour confirmer votre place.',
       () => equipeField.classList.remove('visible')
     );
-
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('benevole') === 'envoyee') {
-      volunteerFeedback.className = 'form-feedback visible success';
-      volunteerFeedback.textContent = 'Inscription bénévole envoyée ! Nous vous recontacterons pour confirmer les informations pratiques du 3 juillet.';
-      params.delete('benevole');
-    }
-    if (params.get('inscription') === 'envoyee') {
-      concoursFeedback.className = 'form-feedback visible success';
-      concoursFeedback.textContent = 'Inscription envoyée ! Nous vous recontacterons par e-mail pour confirmer votre place.';
-      params.delete('inscription');
-    }
-    if (window.location.search && window.location.search !== `?${params.toString()}`) {
-      const cleanUrl = `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ''}${window.location.hash}`;
-      window.history.replaceState({}, '', cleanUrl);
-    }
   </script>
 </body>
 </html>

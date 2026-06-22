@@ -668,46 +668,6 @@
       equipeField.classList.toggle('visible', modeSelect.value === 'En équipe');
     });
 
-    function buildFallbackPayload(payload) {
-      if (payload.evenement === 'operation_quartier_propre') {
-        return {
-          _subject: `Inscription bénévole 3 juillet — ${payload.prenom} ${payload.nom}`,
-          _template: 'table',
-          _captcha: 'false',
-          Événement: 'Opération Quartier Propre',
-          Date: 'Vendredi 3 juillet 2026',
-          Lieu: 'Cité Verte, Yaoundé',
-          Prénom: payload.prenom,
-          Nom: payload.nom,
-          Email: payload.email,
-          Téléphone: payload.telephone,
-          Âge: payload.age || '—',
-          'Quartier / commune': payload.quartier || '—',
-          Disponibilité: payload.disponibilite,
-          Groupe: payload.groupe || '—',
-          Message: payload.message || '—',
-        };
-      }
-
-      return {
-        _subject: `Inscription concours 4 juillet — ${payload.prenom} ${payload.nom}`,
-        _template: 'table',
-        _captcha: 'false',
-        Événement: "Concours d'éco-conception",
-        Date: 'Samedi 4 juillet 2026',
-        Lieu: 'Lycée technique et Commercial de Yaoundé',
-        Prénom: payload.prenom,
-        Nom: payload.nom,
-        Email: payload.email,
-        Téléphone: payload.telephone,
-        Profil: payload.profil,
-        Inscription: payload.mode,
-        'Nom équipe': payload.nom_equipe || '—',
-        Établissement: payload.etablissement || '—',
-        Message: payload.message || '—',
-      };
-    }
-
     async function sendInscription(payload) {
       const response = await fetch('/api/inscription', {
         method: 'POST',
@@ -716,15 +676,6 @@
       });
       const data = await response.json().catch(() => ({}));
       if (response.ok && data.ok) return true;
-
-      if (response.status === 404) {
-        const fallback = await fetch('https://formsubmit.co/ajax/contact@odyssee-express.org', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify(buildFallbackPayload(payload)),
-        });
-        return fallback.ok;
-      }
 
       throw new Error(data.error || 'Envoi impossible');
     }

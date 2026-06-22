@@ -399,8 +399,12 @@
 
           <div class="form-feedback" id="volunteerFeedback" role="status" aria-live="polite"></div>
 
-          <form class="registration-form" id="volunteerForm" novalidate>
+          <form class="registration-form" id="volunteerForm" novalidate method="POST" action="https://formsubmit.co/contact@odyssee-express.org">
             <input type="hidden" name="evenement" value="operation_quartier_propre">
+            <input type="hidden" name="_subject" value="Inscription bénévole 3 juillet">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://odyssee-express.org/?benevole=envoyee#inscription-3-juillet">
 
             <div class="hp-field" aria-hidden="true">
               <label for="volunteerWebsite">Ne pas remplir</label>
@@ -489,8 +493,12 @@
 
           <div class="form-feedback" id="formFeedback" role="status" aria-live="polite"></div>
 
-          <form class="registration-form" id="registrationForm" novalidate>
+          <form class="registration-form" id="registrationForm" novalidate method="POST" action="https://formsubmit.co/contact@odyssee-express.org">
             <input type="hidden" name="evenement" value="concours_eco_conception">
+            <input type="hidden" name="_subject" value="Inscription concours 4 juillet">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://odyssee-express.org/?inscription=envoyee#inscription">
 
             <div class="hp-field" aria-hidden="true">
               <label for="website">Ne pas remplir</label>
@@ -691,39 +699,35 @@
       };
     }
 
-    function buildFallbackReturnUrl(payload) {
+    function updateFallbackReturnUrl(form, payload) {
       const isVolunteer = payload.evenement === 'operation_quartier_propre';
       const url = new URL(window.location.href);
+      const nextInput = form.querySelector('input[name="_next"]');
       url.searchParams.set(isVolunteer ? 'benevole' : 'inscription', 'envoyee');
       url.hash = isVolunteer ? 'inscription-3-juillet' : 'inscription';
-      return url.toString();
+      if (nextInput) nextInput.value = url.toString();
     }
 
-    function sendViaFormSubmit(payload) {
-      const form = document.createElement('form');
-      const fallbackPayload = {
-        ...buildFallbackPayload(payload),
-        _next: buildFallbackReturnUrl(payload),
-      };
-
+    function submitNativeFallback(form, payload) {
+      updateFallbackReturnUrl(form, payload);
       form.method = 'POST';
       form.action = 'https://formsubmit.co/contact@odyssee-express.org';
-      form.style.display = 'none';
+      form.querySelectorAll('[data-fallback-field="true"]').forEach((input) => input.remove());
 
-      Object.entries(fallbackPayload).forEach(([name, value]) => {
+      Object.entries(buildFallbackPayload(payload)).forEach(([name, value]) => {
         const input = document.createElement('input');
         input.type = 'hidden';
         input.name = name;
         input.value = value;
+        input.setAttribute('data-fallback-field', 'true');
         form.appendChild(input);
       });
 
-      document.body.appendChild(form);
-      form.submit();
+      HTMLFormElement.prototype.submit.call(form);
       return 'redirecting';
     }
 
-    async function sendInscription(payload) {
+    async function sendInscription(payload, form) {
       let response;
 
       try {
@@ -733,7 +737,7 @@
           body: JSON.stringify(payload),
         });
       } catch {
-        return sendViaFormSubmit(payload);
+        return submitNativeFallback(form, payload);
       }
 
       const data = await response.json().catch(() => null);
@@ -743,7 +747,7 @@
         throw new Error((data && data.error) || 'Envoi impossible');
       }
 
-      return sendViaFormSubmit(payload);
+      return submitNativeFallback(form, payload);
     }
 
     function setupInscriptionForm(form, feedback, submitBtn, successText, afterReset) {
@@ -766,7 +770,7 @@
         const payload = Object.fromEntries(formData.entries());
 
         try {
-          const sent = await sendInscription(payload);
+          const sent = await sendInscription(payload, form);
           if (sent === 'redirecting') {
             feedback.className = 'form-feedback visible success';
             feedback.textContent = 'Redirection vers l’envoi sécurisé en cours…';
@@ -778,14 +782,17 @@
           feedback.textContent = successText;
           form.reset();
           if (afterReset) afterReset();
-        } catch {
+        } catch (error) {
           feedback.className = 'form-feedback visible error';
-          feedback.textContent = 'Envoi impossible pour le moment. Réessayez ou écrivez à contact@odyssee-express.org.';
+          feedback.textContent = (error && error.message) || 'Envoi impossible pour le moment. Réessayez ou écrivez à contact@odyssee-express.org.';
         } finally {
           submitBtn.disabled = false;
           submitBtn.textContent = defaultText;
         }
       });
+
+      const eventInput = form.querySelector('input[name="evenement"]');
+      updateFallbackReturnUrl(form, { evenement: eventInput ? eventInput.value : '' });
     }
 
     setupInscriptionForm(

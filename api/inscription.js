@@ -1,4 +1,6 @@
 const INSCRIPTION_EMAIL = process.env.INSCRIPTION_EMAIL || 'contact@odyssee-express.org';
+const INSCRIPTION_FROM_EMAIL = process.env.INSCRIPTION_FROM_EMAIL || "L'Odyssée Express <onboarding@resend.dev>";
+const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
 
 function sanitize(value, maxLen = 200) {
   if (typeof value !== 'string') return '';
@@ -7,6 +9,83 @@ function sanitize(value, maxLen = 200) {
 
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function payloadEntries(payload) {
+  return Object.entries(payload).filter(([key]) => !key.startsWith('_'));
+}
+
+function payloadToText(payload) {
+  return payloadEntries(payload)
+    .map(([key, value]) => `${key}: ${value || '—'}`)
+    .join('\n');
+}
+
+function payloadToHtml(payload) {
+  const rows = payloadEntries(payload)
+    .map(([key, value]) => {
+      const safeKey = String(key).replace(/[&<>"']/g, (char) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+      }[char]));
+      const safeValue = String(value || '—').replace(/[&<>"']/g, (char) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+      }[char]));
+      return `<tr><th align="left" style="padding:6px 10px;border:1px solid #ddd;">${safeKey}</th><td style="padding:6px 10px;border:1px solid #ddd;">${safeValue}</td></tr>`;
+    })
+    .join('');
+
+  return `<table style="border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px;">${rows}</table>`;
+}
+
+async function sendWithResend(payload) {
+  if (!RESEND_API_KEY) return false;
+
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from: INSCRIPTION_FROM_EMAIL,
+      to: [INSCRIPTION_EMAIL],
+      reply_to: payload.Email,
+      subject: payload._subject,
+      text: payloadToText(payload),
+      html: payloadToHtml(payload),
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error('Service de messagerie indisponible');
+  }
+
+  return true;
+}
+
+async function sendWithFormSubmit(payload) {
+  const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(INSCRIPTION_EMAIL)}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error('Service de messagerie indisponible');
+  }
+
+  return true;
 }
 
 export default async function handler(req, res) {
@@ -99,21 +178,13 @@ export default async function handler(req, res) {
   }
 
   try {
-    const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(INSCRIPTION_EMAIL)}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify(payload),
-    });
-
-    if (!response.ok) {
-      return res.status(502).json({ ok: false, error: 'Service de messagerie indisponible' });
+    const sent = await sendWithResend(payload);
+    if (!sent) {
+      await sendWithFormSubmit(payload);
     }
 
     return res.status(200).json({ ok: true });
-  } catch {
-    return res.status(502).json({ ok: false, error: 'Envoi impossible' });
+  } catch (error) {
+    return res.status(502).json({ ok: false, error: error.message || 'Envoi impossible' });
   }
 }

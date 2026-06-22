@@ -691,15 +691,36 @@
       };
     }
 
-    async function sendViaFormSubmit(payload) {
-      const fallback = await fetch('https://formsubmit.co/ajax/contact@odyssee-express.org', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(buildFallbackPayload(payload)),
+    function buildFallbackReturnUrl(payload) {
+      const isVolunteer = payload.evenement === 'operation_quartier_propre';
+      const url = new URL(window.location.href);
+      url.searchParams.set(isVolunteer ? 'benevole' : 'inscription', 'envoyee');
+      url.hash = isVolunteer ? 'inscription-3-juillet' : 'inscription';
+      return url.toString();
+    }
+
+    function sendViaFormSubmit(payload) {
+      const form = document.createElement('form');
+      const fallbackPayload = {
+        ...buildFallbackPayload(payload),
+        _next: buildFallbackReturnUrl(payload),
+      };
+
+      form.method = 'POST';
+      form.action = 'https://formsubmit.co/contact@odyssee-express.org';
+      form.style.display = 'none';
+
+      Object.entries(fallbackPayload).forEach(([name, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = value;
+        form.appendChild(input);
       });
-      const data = await fallback.json().catch(() => ({}));
-      if (fallback.ok) return true;
-      throw new Error(data.message || 'Envoi impossible');
+
+      document.body.appendChild(form);
+      form.submit();
+      return 'redirecting';
     }
 
     async function sendInscription(payload) {
@@ -746,6 +767,11 @@
 
         try {
           const sent = await sendInscription(payload);
+          if (sent === 'redirecting') {
+            feedback.className = 'form-feedback visible success';
+            feedback.textContent = 'Redirection vers l’envoi sécurisé en cours…';
+            return;
+          }
           if (!sent) throw new Error('Envoi impossible');
 
           feedback.className = 'form-feedback visible success';
@@ -776,6 +802,22 @@
       'Inscription envoyée ! Nous vous recontacterons par e-mail pour confirmer votre place.',
       () => equipeField.classList.remove('visible')
     );
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('benevole') === 'envoyee') {
+      volunteerFeedback.className = 'form-feedback visible success';
+      volunteerFeedback.textContent = 'Inscription bénévole envoyée ! Nous vous recontacterons pour confirmer les informations pratiques du 3 juillet.';
+      params.delete('benevole');
+    }
+    if (params.get('inscription') === 'envoyee') {
+      concoursFeedback.className = 'form-feedback visible success';
+      concoursFeedback.textContent = 'Inscription envoyée ! Nous vous recontacterons par e-mail pour confirmer votre place.';
+      params.delete('inscription');
+    }
+    if (window.location.search && window.location.search !== `?${params.toString()}`) {
+      const cleanUrl = `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ''}${window.location.hash}`;
+      window.history.replaceState({}, '', cleanUrl);
+    }
   </script>
 </body>
 </html>

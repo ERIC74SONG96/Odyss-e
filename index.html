@@ -691,25 +691,38 @@
       };
     }
 
-    async function sendInscription(payload) {
-      const response = await fetch('/api/inscription', {
+    async function sendViaFormSubmit(payload) {
+      const fallback = await fetch('https://formsubmit.co/ajax/contact@odyssee-express.org', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(buildFallbackPayload(payload)),
       });
-      const data = await response.json().catch(() => ({}));
-      if (response.ok && data.ok) return true;
+      const data = await fallback.json().catch(() => ({}));
+      if (fallback.ok) return true;
+      throw new Error(data.message || 'Envoi impossible');
+    }
 
-      if (response.status === 404) {
-        const fallback = await fetch('https://formsubmit.co/ajax/contact@odyssee-express.org', {
+    async function sendInscription(payload) {
+      let response;
+
+      try {
+        response = await fetch('/api/inscription', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify(buildFallbackPayload(payload)),
+          body: JSON.stringify(payload),
         });
-        return fallback.ok;
+      } catch {
+        return sendViaFormSubmit(payload);
       }
 
-      throw new Error(data.error || 'Envoi impossible');
+      const data = await response.json().catch(() => null);
+      if (response.ok && data && data.ok) return true;
+
+      if (response.status >= 400 && response.status < 500 && response.status !== 404) {
+        throw new Error((data && data.error) || 'Envoi impossible');
+      }
+
+      return sendViaFormSubmit(payload);
     }
 
     function setupInscriptionForm(form, feedback, submitBtn, successText, afterReset) {

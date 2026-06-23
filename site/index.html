@@ -395,7 +395,7 @@
         </div>
 
         <div class="inscription-form-wrap">
-          <p class="form-intro">Inscrivez-vous pour participer à la journée de terrain du vendredi 3 juillet 2026. Le formulaire ouvrira un e-mail prérempli à envoyer à notre équipe.</p>
+          <p class="form-intro">Inscrivez-vous pour participer à la journée de terrain du vendredi 3 juillet 2026. Après validation, envoyez votre demande par WhatsApp, e-mail ou copiez le message.</p>
 
           <div class="form-feedback" id="volunteerFeedback" role="status" aria-live="polite"></div>
 
@@ -485,7 +485,7 @@
         </div>
 
         <div class="inscription-form-wrap">
-          <p class="form-intro">Remplissez le formulaire ci-dessous. Il ouvrira un e-mail prérempli ; notre équipe vous confirmera ensuite votre place par e-mail et ajoutera votre inscription à la liste.</p>
+          <p class="form-intro">Remplissez le formulaire ci-dessous. Après validation, envoyez votre demande par WhatsApp, e-mail ou copiez le message. Notre équipe confirmera ensuite votre place.</p>
 
           <div class="form-feedback" id="formFeedback" role="status" aria-live="polite"></div>
 
@@ -652,60 +652,91 @@
     });
 
     const contactEmail = 'contact@odyssee-express.org';
+    const whatsappNumber = '32465339448';
 
     function line(label, value) {
       return `${label}: ${value || '—'}`;
     }
 
-    function buildEmail(payload) {
+    function buildMessage(payload) {
       if (payload.evenement === 'operation_quartier_propre') {
-        return {
-          subject: `Inscription bénévole 3 juillet — ${payload.prenom} ${payload.nom}`,
-          body: [
-            'Bonjour,',
-            '',
-            "Je souhaite m'inscrire comme bénévole à l'Opération Quartier Propre du 3 juillet 2026.",
-            '',
-            line('Prénom', payload.prenom),
-            line('Nom', payload.nom),
-            line('E-mail', payload.email),
-            line('Téléphone / WhatsApp', payload.telephone),
-            line('Âge', payload.age),
-            line('Quartier / commune', payload.quartier),
-            line('Disponibilité', payload.disponibilite),
-            line('Je viens', payload.groupe),
-            line('Message', payload.message),
-            '',
-            "Merci de confirmer mon inscription et de m'ajouter à la liste des participants.",
-          ].join('\n'),
-        };
-      }
-
-      return {
-        subject: `Inscription concours 4 juillet — ${payload.prenom} ${payload.nom}`,
-        body: [
+        return [
           'Bonjour,',
           '',
-          "Je souhaite m'inscrire au concours d'éco-conception L'Odyssée Express du 4 juillet 2026.",
+          "Je souhaite m'inscrire comme bénévole à l'Opération Quartier Propre du 3 juillet 2026.",
           '',
           line('Prénom', payload.prenom),
           line('Nom', payload.nom),
           line('E-mail', payload.email),
           line('Téléphone / WhatsApp', payload.telephone),
-          line('Profil', payload.profil),
-          line('Inscription', payload.mode),
-          line("Nom de l'équipe", payload.nom_equipe),
-          line('Établissement / filière', payload.etablissement),
+          line('Âge', payload.age),
+          line('Quartier / commune', payload.quartier),
+          line('Disponibilité', payload.disponibilite),
+          line('Je viens', payload.groupe),
           line('Message', payload.message),
           '',
           "Merci de confirmer mon inscription et de m'ajouter à la liste des participants.",
-        ].join('\n'),
+        ].join('\n');
+      }
+
+      return [
+        'Bonjour,',
+        '',
+        "Je souhaite m'inscrire au concours d'éco-conception L'Odyssée Express du 4 juillet 2026.",
+        '',
+        line('Prénom', payload.prenom),
+        line('Nom', payload.nom),
+        line('E-mail', payload.email),
+        line('Téléphone / WhatsApp', payload.telephone),
+        line('Profil', payload.profil),
+        line('Inscription', payload.mode),
+        line("Nom de l'équipe", payload.nom_equipe),
+        line('Établissement / filière', payload.etablissement),
+        line('Message', payload.message),
+        '',
+        "Merci de confirmer mon inscription et de m'ajouter à la liste des participants.",
+      ].join('\n');
+    }
+
+    function buildEmail(payload) {
+      const body = buildMessage(payload);
+      if (payload.evenement === 'operation_quartier_propre') {
+        return {
+          subject: `Inscription bénévole 3 juillet — ${payload.prenom} ${payload.nom}`,
+          body,
+        };
+      }
+
+      return {
+        subject: `Inscription concours 4 juillet — ${payload.prenom} ${payload.nom}`,
+        body,
       };
     }
 
     function buildMailto(payload) {
       const email = buildEmail(payload);
       return `mailto:${contactEmail}?subject=${encodeURIComponent(email.subject)}&body=${encodeURIComponent(email.body)}`;
+    }
+
+    function buildWhatsApp(payload) {
+      return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(buildMessage(payload))}`;
+    }
+
+    async function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      textarea.remove();
     }
 
     function setupInscriptionForm(form, feedback, submitBtn, afterSubmit) {
@@ -721,20 +752,39 @@
 
         const formData = new FormData(form);
         const payload = Object.fromEntries(formData.entries());
+        const message = buildMessage(payload);
+        const whatsapp = buildWhatsApp(payload);
         const mailto = buildMailto(payload);
+        const actions = document.createElement('div');
+        const whatsappLink = document.createElement('a');
         const mailLink = document.createElement('a');
+        const copyButton = document.createElement('button');
 
+        actions.className = 'form-action-grid';
+        whatsappLink.href = whatsapp;
+        whatsappLink.target = '_blank';
+        whatsappLink.rel = 'noopener';
+        whatsappLink.className = 'form-action-btn form-action-primary';
+        whatsappLink.textContent = 'Envoyer par WhatsApp';
         mailLink.href = mailto;
-        mailLink.textContent = 'cliquez ici pour ouvrir l’e-mail';
+        mailLink.className = 'form-action-btn';
+        mailLink.textContent = 'Envoyer par e-mail';
+        copyButton.type = 'button';
+        copyButton.className = 'form-action-btn';
+        copyButton.textContent = 'Copier le message';
+        copyButton.addEventListener('click', async () => {
+          await copyText(message);
+          copyButton.textContent = 'Message copié';
+        });
+        actions.append(whatsappLink, mailLink, copyButton);
 
         feedback.className = 'form-feedback visible success';
         feedback.append(
-          'Votre messagerie va s’ouvrir avec un e-mail prérempli. Envoyez cet e-mail pour finaliser la demande. Si rien ne s’ouvre, ',
-          mailLink,
-          '.'
+          'Votre demande est prête. Envoyez-la par WhatsApp de préférence, ou utilisez l’e-mail / la copie manuelle :',
+          actions
         );
         if (afterSubmit) afterSubmit();
-        window.location.href = mailto;
+        window.location.href = whatsapp;
       });
     }
 

@@ -1133,6 +1133,40 @@ img { max-width: 100%; height: auto; display: block; }
   border: 1px solid #ef9a9a;
 }
 
+.form-action-grid {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+}
+
+.form-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #a5d6a7;
+  border-radius: 6px;
+  background: var(--white);
+  color: #2e7d32;
+  font: inherit;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.form-action-primary {
+  background: #2e7d32;
+  color: var(--white);
+}
+
+.form-action-btn:hover,
+.form-action-btn:focus {
+  filter: brightness(0.97);
+}
+
 .hp-field {
   position: absolute;
   left: -9999px;

@@ -178,6 +178,24 @@
   .fact .l{font-family:var(--sans);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);line-height:1.5}
   @media(max-width:760px){.facts{grid-template-columns:repeat(2,1fr)}}
 
+  /* publication / retombée média */
+  .pub{
+    margin-top:40px;padding:28px 30px;
+    border:1px solid var(--rule);border-left:3px solid var(--orange);
+    background:#fff;
+  }
+  .pub .pub-k{
+    font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--orange);display:block;margin-bottom:10px;
+  }
+  .pub p{font-size:17px;color:var(--muted);margin:0 0 14px}
+  .pub a{
+    font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--navy);text-decoration:none;
+    border-bottom:1px solid var(--gold);
+  }
+  .pub a:hover{color:var(--orange)}
+
   /* lauréats */
   .laureat{background:#fff;border:1px solid var(--rule);border-top:3px solid var(--orange);padding:28px 26px}
   .laureat h3{margin-bottom:8px}
@@ -362,6 +380,12 @@
       <div class="fact"><span class="n">4</span><span class="l">Partenaires institutionnels engagés</span></div>
       <div class="fact"><span class="n">3</span><span class="l">Conventions d'incubation signées</span></div>
     </div>
+
+    <aside class="pub reveal" aria-label="Retombée média">
+      <span class="pub-k">Publication · Ambassade de Belgique au Cameroun</span>
+      <p>L'Ambassade de Belgique au Cameroun a publié des photos de l'édition inaugurale sur son compte Facebook.</p>
+      <a href="https://www.facebook.com/share/p/1by2CAcGKE/" target="_blank" rel="noopener noreferrer">Voir la publication sur Facebook</a>
+    </aside>
   </div>
 </section>
 

@@ -1,825 +1,570 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="L'Odyssée Express — Opération Quartier Propre le 3 juillet et Compétition d'Éco-Conception au Lycée technique et Commercial de Yaoundé le 4 juillet 2026.">
-  <title>LE CONCOURS — L'Odyssée Express</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'Odyssée Express — Éco-innovation Bruxelles ↔ Afrique centrale</title>
+<meta name="description" content="L'Odyssée Express est une initiative belgo-camerounaise d'éco-innovation : Green Hackathon, incubation des équipes lauréates et plateforme Odyssée Smart City.">
+<meta property="og:title" content="L'Odyssée Express">
+<meta property="og:description" content="Éco-innovation et coopération Belgique – Afrique centrale. Green Hackathon, incubation, Odyssée Smart City.">
+<meta property="og:locale" content="fr_BE">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2316305c'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23E07B1A' stroke-width='2.5'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --navy:#16305c;
+    --navy-deep:#0c1c38;
+    --orange:#E07B1A;
+    --gold:#C9A35A;
+    --paper:#FBF9F5;
+    --paper-alt:#F2EFE8;
+    --ink:#161d2b;
+    --muted:#5c6678;
+    --rule:rgba(22,48,92,.16);
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    --maxw:1140px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--serif);
+    font-size:18px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%}
+  a{color:inherit}
+
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  /* ---------- utilitaires typographiques ---------- */
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin:0 0 18px;
+  }
+  .eyebrow--ink{color:var(--orange)}
+  h1,h2,h3{font-weight:normal;margin:0}
+  h2{
+    font-size:clamp(28px,4vw,42px);
+    line-height:1.15;
+    letter-spacing:-.015em;
+    color:var(--navy);
+  }
+  h3{font-size:21px;line-height:1.3;color:var(--navy)}
+  p{margin:0 0 1.1em}
+  .lead{font-size:clamp(19px,2.1vw,22px);line-height:1.6}
+  .muted{color:var(--muted)}
+  .rule{height:1px;background:var(--rule);border:0;margin:0}
+
+  /* ---------- barre de navigation ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(12,28,56,.96);
+    border-bottom:1px solid rgba(201,163,90,.3);
+    backdrop-filter:saturate(140%) blur(6px);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;height:64px}
+  .brand{
+    font-family:var(--sans);font-size:11px;font-weight:700;
+    letter-spacing:.2em;text-transform:uppercase;color:#fff;
+    text-decoration:none;display:flex;align-items:center;gap:10px;
+  }
+  .brand .mark{width:11px;height:11px;border:2px solid var(--orange);border-radius:50%;display:inline-block;flex:none}
+  .nav-links{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+  .nav-links a{
+    font-family:var(--sans);font-size:12px;letter-spacing:.08em;
+    color:rgba(255,255,255,.75);text-decoration:none;padding:4px 0;
+    border-bottom:1px solid transparent;transition:color .2s,border-color .2s;
+  }
+  .nav-links a:hover,.nav-links a:focus-visible{color:#fff;border-bottom-color:var(--orange)}
+  @media(max-width:860px){.nav-links{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:var(--navy-deep);
+    color:#fff;
+    padding:clamp(70px,11vw,130px) 0 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(1100px 480px at 18% -10%,rgba(22,48,92,.95),transparent 70%);
+    pointer-events:none;
+  }
+  .hero .wrap{position:relative}
+  .hero h1{
+    font-size:clamp(38px,6.6vw,74px);
+    line-height:1.03;
+    letter-spacing:-.025em;
+    max-width:15ch;
+    margin:0 0 26px;
+  }
+  .hero h1 em{font-style:normal;color:var(--gold)}
+  .hero-lead{
+    max-width:56ch;color:rgba(255,255,255,.8);
+    font-size:clamp(18px,2vw,21px);margin-bottom:38px;
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:70px}
+  .btn{
+    display:inline-block;font-family:var(--sans);font-size:12px;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
+    padding:15px 26px;border:1px solid transparent;transition:.2s;
+  }
+  .btn-primary{background:var(--orange);color:#fff}
+  .btn-primary:hover,.btn-primary:focus-visible{background:#c96b12}
+  .btn-ghost{border-color:rgba(201,163,90,.55);color:var(--gold)}
+  .btn-ghost:hover,.btn-ghost:focus-visible{background:rgba(201,163,90,.14);color:#fff}
+
+  /* ---------- signature : l'axe ---------- */
+  .axis{padding-bottom:58px}
+  .axis-label{
+    display:flex;justify-content:space-between;
+    font-family:var(--sans);font-size:11px;letter-spacing:.24em;
+    text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:14px;
+  }
+  .axis svg{display:block;width:100%;height:74px;overflow:visible}
+  .axis .track{stroke:rgba(255,255,255,.18);stroke-width:1}
+  .axis .draw{
+    stroke:var(--gold);stroke-width:1.5;fill:none;
+    stroke-dasharray:1000;stroke-dashoffset:1000;
+    animation:draw 2.4s cubic-bezier(.6,.05,.2,1) .35s forwards;
+  }
+  .axis .stop{fill:var(--navy-deep);stroke:var(--gold);stroke-width:1.5}
+  .axis .stop-live{fill:var(--orange);stroke:none;animation:pulse 3.2s ease-in-out infinite}
+  .axis .cap{font-family:var(--sans);font-size:10px;letter-spacing:.14em;fill:rgba(255,255,255,.72);text-transform:uppercase}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+  /* ---------- sections ---------- */
+  section{padding:clamp(64px,8vw,104px) 0}
+  .band-paper{background:var(--paper)}
+  .band-alt{background:var(--paper-alt)}
+  .band-navy{background:var(--navy);color:#fff}
+  .band-navy h2,.band-navy h3{color:#fff}
+  .band-navy .muted{color:rgba(255,255,255,.68)}
+
+  .sec-head{max-width:62ch;margin-bottom:52px}
+  .sec-head h2{margin-bottom:18px}
+
+  .grid{display:grid;gap:32px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:900px){.g3,.g2{grid-template-columns:1fr}}
+
+  /* piliers */
+  .pillar{border-top:2px solid var(--navy);padding-top:22px}
+  .pillar .tag{
+    font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--orange);display:block;margin-bottom:12px;
+  }
+  .pillar h3{margin-bottom:12px}
+  .pillar p{font-size:16.5px;color:var(--muted);margin:0}
+
+  /* chiffres de l'édition */
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+  .fact{background:var(--paper);padding:26px 22px}
+  .band-alt .fact{background:var(--paper-alt)}
+  .fact .n{font-size:36px;line-height:1;color:var(--navy);display:block;margin-bottom:10px;letter-spacing:-.02em}
+  .fact .l{font-family:var(--sans);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);line-height:1.5}
+  @media(max-width:760px){.facts{grid-template-columns:repeat(2,1fr)}}
+
+  /* lauréats */
+  .laureat{background:#fff;border:1px solid var(--rule);border-top:3px solid var(--orange);padding:28px 26px}
+  .laureat h3{margin-bottom:8px}
+  .laureat .role{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .laureat p{font-size:16.5px;color:var(--muted);margin:0}
+
+  /* modules plateforme */
+  .modules{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px}
+  .module{border:1px solid rgba(201,163,90,.35);padding:20px 18px}
+  .module .st{font-family:var(--sans);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px}
+  .module strong{display:block;font-weight:normal;font-size:18px;margin-bottom:6px}
+  .module span.d{font-size:15px;color:rgba(255,255,255,.62);line-height:1.5}
+  @media(max-width:900px){.modules{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.modules{grid-template-columns:1fr}}
+
+  /* calendrier des éditions */
+  .editions{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+  .edition{
+    display:grid;grid-template-columns:170px 1fr 150px;gap:24px;align-items:baseline;
+    padding:26px 0;border-bottom:1px solid var(--rule);
+  }
+  .edition .date{font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--navy)}
+  .edition .title{font-size:22px;color:var(--navy)}
+  .edition .place{display:block;font-size:16px;color:var(--muted);margin-top:4px}
+  .status{
+    font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    padding:5px 11px;border:1px solid currentColor;white-space:nowrap;
+  }
+  .status.done{color:#2f6b52}
+  .status.next{color:var(--orange)}
+  .status.plan{color:var(--muted)}
+  @media(max-width:760px){
+    .edition{grid-template-columns:1fr;gap:8px}
+    .edition .status{justify-self:start}
+  }
+
+  /* partenaires */
+  .partners{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+  .partner{background:var(--paper);padding:30px 28px}
+  .partner .kind{font-family:var(--sans);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+  .partner .who{font-size:20px;color:var(--navy);line-height:1.35}
+  .partner .det{font-size:15.5px;color:var(--muted);margin-top:8px;display:block}
+  @media(max-width:760px){.partners{grid-template-columns:1fr}}
+
+  /* gouvernance */
+  .board{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:18px 32px}
+  .board li{border-left:2px solid var(--gold);padding-left:16px}
+  .board .fn{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px}
+  .board .nm{font-size:18px;color:var(--navy)}
+  @media(max-width:620px){.board{grid-template-columns:1fr}}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px}
+  @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:36px}}
+  .coord{list-style:none;margin:0;padding:0}
+  .coord li{padding:16px 0;border-bottom:1px solid rgba(255,255,255,.16)}
+  .coord .k{font-family:var(--sans);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:5px}
+  .coord a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(224,123,26,.7)}
+  .coord a:hover{color:var(--orange)}
+
+  /* pied de page */
+  footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:38px 0;font-size:14px}
+  .foot{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
+  footer .sm{font-family:var(--sans);font-size:11px;letter-spacing:.1em}
+
+  /* accessibilité */
+  a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+  .skip{position:absolute;left:-9999px}
+  .skip:focus{left:16px;top:12px;z-index:99;background:#fff;color:var(--navy);padding:10px 16px}
+
+  /* révélation au défilement */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    .axis .draw{animation:none;stroke-dashoffset:0}
+    .axis .stop-live{animation:none}
+  }
+</style>
 </head>
 <body>
+<a class="skip" href="#contenu">Aller au contenu</a>
 
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <span class="topbar-tag">La Compétition d'Éco-Conception · À but non lucratif</span>
-      <a href="https://lodysseedelobjet48h.wallonie.be/home.html" target="_blank" rel="noopener">L'Odyssée de l'objet 48H — Wallonie</a>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top"><span class="mark"></span>L'Odyssée Express</a>
+    <nav aria-label="Navigation principale">
+      <ul class="nav-links">
+        <li><a href="#initiative">L'initiative</a></li>
+        <li><a href="#yaounde2026">Édition 2026</a></li>
+        <li><a href="#laureats">Lauréats</a></li>
+        <li><a href="#plateforme">Smart City</a></li>
+        <li><a href="#editions">Calendrier</a></li>
+        <li><a href="#partenaires">Partenaires</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+
+<!-- ============ HERO ============ -->
+<div class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow">Éco-innovation &amp; coopération Belgique – Afrique centrale</p>
+    <h1>Concevoir à Bruxelles, <em>exécuter</em> sur le terrain.</h1>
+    <p class="hero-lead">L'Odyssée Express fait travailler ensemble des étudiants, des institutions et des entreprises sur des solutions concrètes de transition écologique — puis accompagne les équipes retenues jusqu'à la création de leur entreprise.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#yaounde2026">Voir l'édition inaugurale</a>
+      <a class="btn btn-ghost" href="#contact">Devenir partenaire</a>
+    </div>
+
+    <!-- Signature : l'axe des éditions -->
+    <div class="axis">
+      <div class="axis-label"><span>Bruxelles</span><span>Yaoundé · Kinshasa</span></div>
+      <svg viewBox="0 0 1000 74" role="img" aria-label="Axe des éditions : Yaoundé juillet 2026, Yaoundé décembre 2026, Kinshasa avril 2027, Bruxelles novembre 2027">
+        <line class="track" x1="0" y1="26" x2="1000" y2="26"></line>
+        <path class="draw" d="M0 26 H1000"></path>
+        <g>
+          <circle class="stop stop-live" cx="60" cy="26" r="5"></circle>
+          <text class="cap" x="60" y="52" text-anchor="start">Yaoundé · juil. 2026</text>
+        </g>
+        <g>
+          <circle class="stop" cx="360" cy="26" r="5"></circle>
+          <text class="cap" x="360" y="52" text-anchor="middle">Yaoundé · déc. 2026</text>
+        </g>
+        <g>
+          <circle class="stop" cx="660" cy="26" r="5"></circle>
+          <text class="cap" x="660" y="52" text-anchor="middle">Kinshasa · avr. 2027</text>
+        </g>
+        <g>
+          <circle class="stop" cx="960" cy="26" r="5"></circle>
+          <text class="cap" x="960" y="52" text-anchor="end">Bruxelles · nov. 2027</text>
+        </g>
+      </svg>
     </div>
   </div>
+</div>
 
-  <header class="site-header" id="top">
-    <div class="header-inner container">
-      <a class="brand" href="#top">
-        <span class="brand-main">L'ODYSSÉE</span>
-        <span class="brand-sub">EXPRESS</span>
-      </a>
-      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" id="navToggle">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="nav" id="mainNav">
-        <a href="#concours" class="active">LE CONCOURS</a>
-        <a href="#operation-quartier-propre">03 JUILLET</a>
-        <a href="#contact">CONTACT</a>
-        <a href="#programme">PROGRAMME</a>
-        <a href="#faq">FAQ</a>
-        <a href="#inscription" class="nav-cta">JE M'INSCRIS !</a>
-      </nav>
+<!-- ============ L'INITIATIVE ============ -->
+<section class="band-paper" id="initiative">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow eyebrow--ink">L'initiative</p>
+      <h2>Une méthode née à Bruxelles, éprouvée en Afrique centrale.</h2>
+      <p class="lead muted">L'Odyssée Express est une initiative belgo-camerounaise fondée par Gédéon Sylvestre Tchuisseu, étudiant ingénieur à l'École polytechnique de Bruxelles (ULB). Elle reprend la méthodologie d'éco-conception du concours <em>L'Odyssée de l'Objet</em> du Service public de Wallonie et l'applique à des problèmes environnementaux urbains, là où ils se posent.</p>
     </div>
-  </header>
 
-  <nav class="breadcrumb" aria-label="Fil d'Ariane">
-    <div class="container">
-      <ol>
-        <li><a href="#top">Accueil</a></li>
-        <li aria-current="page">LE CONCOURS</li>
-      </ol>
-    </div>
-  </nav>
-
-  <main>
-    <section class="contest-hero" id="concours">
-      <div class="container">
-        <h1 class="page-title">LE CONCOURS</h1>
-
-        <div class="contest-intro">
-          <p class="contest-pitch">
-            Un <strong>défi collaboratif</strong> où des équipes de jeunes conçoivent des solutions
-            d'<strong>économie circulaire</strong> en une journée de <strong>8h à 18h</strong>,
-            sur une thématique sociétale liée à Yaoundé.
-          </p>
-          <p class="contest-pitch">
-            Encadrés par des <strong>experts</strong>, les participants présenteront leur projet à un jury.
-            Les <strong>3 équipes lauréates</strong> recevront des <strong>prix d'émulation</strong>
-            et un accompagnement pour développer leur idée.
-          </p>
-        </div>
-
-        <div class="event-overview-grid" id="operation-quartier-propre">
-          <article class="event-overview-card event-overview-terrain">
-            <h2>Vendredi 3 juillet — L'Impact Citoyen (Terrain)</h2>
-            <p>
-              Mobilisation de <strong>200 jeunes bénévoles</strong> pour une opération "Quartier Propre"
-              à forte visibilité au coeur de la Cité Verte. Campagne de porte-à-porte et distribution
-              massive de <strong>10 000 sacs de collecte</strong> aux riverains pour impulser une dynamique
-              de tri sélectif à la source.
-            </p>
-            <a href="#inscription-3-juillet" class="event-card-link">S'inscrire pour le 3 juillet</a>
-          </article>
-
-          <article class="event-overview-card event-overview-innovation">
-            <h2>Samedi 4 juillet — L'Impact Technologique (Innovation)</h2>
-            <p>
-              Un Green Hackathon de 24h au <strong>Lycée technique et Commercial de Yaoundé</strong>
-              réunissant 50 jeunes aux profils variés pour transformer les ressources et déchets
-              collectés la veille en prototypes viables d'économie circulaire.
-            </p>
-            <a href="#inscription" class="event-card-link">S'inscrire pour le 4 juillet</a>
-          </article>
-        </div>
-
-        <div class="contest-hero-cta">
-          <figure class="contest-logo-full">
-            <img class="contest-logo-svg" src="assets/logo-odyssee-express.svg" width="520" height="132" alt="L'Odyssée Express — La Compétition d'Éco-Conception · Yaoundé 2026">
-          </figure>
-          <a href="#inscription" class="btn-register btn-register-lg">JE M'INSCRIS !</a>
-        </div>
+    <div class="grid g3">
+      <div class="pillar reveal">
+        <span class="tag">Pilier 01</span>
+        <h3>Green Hackathon</h3>
+        <p>Une opération citoyenne de collecte de données environnementales sur le terrain, suivie d'un sprint d'innovation de dix heures et d'un Grand Oral devant jury officiel. Le format se rejoue chaque année, dans une ville différente.</p>
       </div>
-    </section>
-
-    <section class="block-section">
-      <div class="container block-row">
-        <h2 class="block-title block-title-col">L'ODYSSÉE<br>EXPRESS,<br>C'EST QUOI ?</h2>
-        <div class="block-content">
-          <p>
-            Une initiative belgo-camerounaise à but non lucratif, inspirée du modèle
-            <a href="https://lodysseedelobjet48h.wallonie.be/home/le-concours-1.html" target="_blank" rel="noopener">L'Odyssée de l'objet en 48H</a>
-            (Wallonie — partenaire confirmé) et de l'expertise en éco-conception (CIVIS / ULB).
-          </p>
-          <p>
-            Projet d'<strong>urgence nationale</strong>, entièrement gratuit : co-développement environnemental
-            et social à fort impact. Nous mobilisons les jeunes talents locaux autour de l'économie circulaire,
-            de la <strong>résilience urbaine</strong> et de l'<strong>innovation citoyenne</strong>, face à
-            l'urgence écologique, sanitaire et urbaine du défi des déchets au Cameroun.
-          </p>
-          <p class="quote">« Ici, on <strong>collabore</strong> pour aller plus loin ensemble. »</p>
-          <p>
-            <strong>Participation gratuite</strong> — l'essentiel des moyens est orienté vers les participants,
-            le mentorat et les lauréats. Aucune rémunération commerciale pour les organisateurs.
-          </p>
-        </div>
+      <div class="pillar reveal">
+        <span class="tag">Pilier 02</span>
+        <h3>Incubation des lauréats</h3>
+        <p>Les équipes distinguées signent une convention d'accompagnement de 24 mois : structuration du projet, business plan, préparation au pitch, mise en relation avec les réseaux institutionnels et recherche de financements.</p>
       </div>
-    </section>
-
-    <section class="block-section section-alt">
-      <div class="container block-row">
-        <h2 class="block-title block-title-col">POUR<br>QUI ?</h2>
-        <div class="block-content">
-          <p>
-            Jeunes de <strong>18 à 30 ans</strong> de Yaoundé et environs, quel que soit le parcours :
-            étudiant, artisan, entrepreneur, designer, ingénieur, communicant, bénévole,
-            porteur d'idée ou tout profil motivé par l'impact écologique et citoyen.
-          </p>
-          <div class="profile-grid">
-            <article class="profile-card">
-              <h3>Profils techniques et pratiques</h3>
-              <p>Personnes à l'aise avec la conception, la fabrication, l'environnement, le numérique ou les solutions concrètes.</p>
-            </article>
-            <article class="profile-card">
-              <h3>Profils créatifs et communication</h3>
-              <p>Esprits inventifs capables d'imaginer, raconter et présenter des concepts originaux ancrés dans les réalités locales.</p>
-            </article>
-            <article class="profile-card">
-              <h3>Profils citoyens et entrepreneuriaux</h3>
-              <p>Personnes motivées par l'action terrain, l'organisation, l'impact social ou la viabilité d'une idée.</p>
-            </article>
-            <article class="profile-card">
-              <h3>Tout autre profil motivé</h3>
-              <p>Bienvenue à toute personne intéressée par l'écologie, les déchets, la Cité Verte et l'innovation locale.</p>
-            </article>
-          </div>
-          <p style="margin-top:1rem;">Places limitées — <a href="#inscription">inscription gratuite</a>.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="block-section">
-      <div class="container block-row">
-        <h2 class="block-title block-title-col">C'EST OÙ<br>ET QUAND ?</h2>
-        <div class="block-content">
-          <p>
-            Au <strong>Lycée technique et Commercial de Yaoundé</strong>, à Yaoundé, Cameroun.
-          </p>
-          <p>
-            <strong>Samedi 4 juillet 2026</strong> — de <strong>8h à 18h</strong>,
-            de l'accueil des équipes au pitch et à la remise de prix.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="block-section section-alt" id="defi">
-      <div class="container block-row">
-        <h2 class="block-title block-title-col">LE<br>DÉFI</h2>
-        <div class="block-content">
-          <p>
-            Transformer les <strong>déchets et ressources locales en valeur</strong> : le défi central
-            porte sur la gestion, le tri et la valorisation des déchets — l'un des enjeux écologiques,
-            sanitaires et urbains les plus critiques au Cameroun.
-          </p>
-          <p>
-            Le brief sera <strong>co-construit avec des mentors locaux</strong> et partagé avec les
-            participants le matin de l'événement. Les équipes devront concevoir des solutions
-            innovantes, viables et locales, ancrées dans l'économie circulaire, le recyclage et
-            la transformation des déchets à Yaoundé.
-          </p>
-          <div class="deliverables-grid">
-            <div class="deliverable">
-              <strong>Solution prototypable</strong>
-              <span>Faisabilité technique et créativité</span>
-            </div>
-            <div class="deliverable">
-              <strong>Modèle de viabilité</strong>
-              <span>Potentiel d'impact et durabilité</span>
-            </div>
-            <div class="deliverable">
-              <strong>Pitch de 5 minutes</strong>
-              <span>Présentation devant le jury</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="block-section">
-      <div class="container block-row">
-        <h2 class="block-title block-title-col">COMMENT ?</h2>
-        <div class="block-content">
-          <p>
-            Les équipes disposeront d'une <strong>journée de 8h à 18h</strong> pour concevoir une solution innovante
-            répondant au brief du hackathon, dévoilé le matin de l'événement.
-          </p>
-          <p>
-            Méthodologie hackathon, éco-conception, prototypage d'idées, mentorat continu
-            et présentation devant un jury en fin de parcours.
-          </p>
-          <p>
-            <strong>Important :</strong> chaque participant au concours du 4 juillet doit venir
-            avec son ordinateur portable.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="block-section section-alt">
-      <div class="container block-row">
-        <h2 class="block-title block-title-col">QUI SERA À<br>L'ODYSSÉE<br>EXPRESS ?</h2>
-        <div class="block-content">
-          <p>
-            L'Odyssée Express rassemblera <strong>50 jeunes talents</strong> aux profils variés,
-            répartis en <strong>10 groupes de 5</strong>. La diversité des parcours, des expériences
-            et des motivations est au cœur de notre approche collaborative.
-          </p>
-          <p>
-            Une équipe de <strong>4 mentors</strong> et de relais logistiques à Yaoundé encadrera
-            les participants, avec une coordination depuis Bruxelles. Trente jeunes aux profils
-            variés ont déjà confirmé leur participation.
-            Objectif : <strong>10 groupes de 5</strong> — <strong>30 confirmés / 50 visés</strong>.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="objectives">
-      <div class="container block-row objectives-row">
-        <h2 class="block-title block-title-col">POURSUIVEZ<br>VOS<br>OBJECTIFS</h2>
-        <div class="block-content">
-          <ol class="objectives-list">
-            <li>Apprenez auprès de professionnels du design, de l'ingénierie et de l'éco-conception.</li>
-            <li>Collaborez avec des jeunes de profils techniques, créatifs et entrepreneuriaux.</li>
-            <li>Développez une solution prototypable et défendez-la devant un jury en 5 minutes.</li>
-            <li>Intégrez un parcours de suivi post-événement si votre équipe est lauréate.</li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt" id="programme">
-      <div class="container">
-        <h2 class="page-title programme-title">PROGRAMME</h2>
-        <div class="programme-table" role="table" aria-label="Programme de la journée">
-          <article class="programme-row" role="row">
-            <span class="programme-lieu" role="cell">Lycée technique<br>et Commercial</span>
-            <h3 class="programme-name" role="cell">ACCUEIL DES<br>PARTICIPANTS</h3>
-            <div class="programme-when" role="cell">
-              <span class="programme-date">04/07/2026</span>
-              <span class="programme-time">8h - 9h</span>
-            </div>
-          </article>
-          <article class="programme-row" role="row">
-            <span class="programme-lieu" role="cell">Lycée technique<br>et Commercial</span>
-            <h3 class="programme-name" role="cell">FORMATION DES<br>ÉQUIPES &amp; BRIEF</h3>
-            <div class="programme-when" role="cell">
-              <span class="programme-date">04/07/2026</span>
-              <span class="programme-time">9h - 12h</span>
-            </div>
-          </article>
-          <article class="programme-row" role="row">
-            <span class="programme-lieu" role="cell">Lycée technique<br>et Commercial</span>
-            <h3 class="programme-name" role="cell">TRAVAUX EN GROUPE<br>&amp; MENTORAT</h3>
-            <div class="programme-when" role="cell">
-              <span class="programme-date">04/07/2026</span>
-              <span class="programme-time">13h - 16h</span>
-            </div>
-          </article>
-          <article class="programme-row" role="row">
-            <span class="programme-lieu" role="cell">Lycée technique<br>et Commercial</span>
-            <h3 class="programme-name" role="cell">PRÉPARATION<br>DU PITCH</h3>
-            <div class="programme-when" role="cell">
-              <span class="programme-date">04/07/2026</span>
-              <span class="programme-time">16h - 17h30</span>
-            </div>
-          </article>
-          <article class="programme-row" role="row">
-            <span class="programme-lieu" role="cell">Lycée technique<br>et Commercial</span>
-            <h3 class="programme-name" role="cell">PITCH &amp; REMISE<br>DE PRIX</h3>
-            <div class="programme-when" role="cell">
-              <span class="programme-date">04/07/2026</span>
-              <span class="programme-time">17h30 - 18h</span>
-            </div>
-          </article>
-        </div>
-        <p class="footnote-inline programme-footnote">Lieu confirmé : Lycée technique et Commercial de Yaoundé.</p>
-      </div>
-    </section>
-
-    <section class="section" id="soutiens">
-      <div class="container">
-        <h2 class="page-title programme-title">PARTENARIATS</h2>
-        <p class="lead center">
-          Conformément à notre charte de transparence, nous affichons uniquement les partenaires
-          actés officiellement.
-        </p>
-        <ul class="partner-list">
-          <li>
-            <span>L'Odyssée de l'objet en 48H (Wallonie)</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section section-alt" id="suivi">
-      <div class="container block-row">
-        <h2 class="block-title block-title-col">APRÈS<br>L'ÉVÉNEMENT</h2>
-        <div class="block-content">
-          <p class="lead" style="margin-top:0;">
-            Notre engagement ne s'arrête pas le jour du hackathon. Les trois équipes lauréates bénéficieront
-            d'un accompagnement structuré pour transformer leur idée en réalité durable.
-          </p>
-          <div class="followup-grid">
-          <article class="followup-step">
-            <div class="step-num">01</div>
-            <h3>Accompagnement au lancement</h3>
-            <p>Soutien pour démarrer le développement concret des projets lauréats.</p>
-          </article>
-          <article class="followup-step">
-            <div class="step-num">02</div>
-            <h3>Suivi à distance</h3>
-            <p>Accompagnement personnalisé pendant trois mois pour structurer et faire grandir chaque projet.</p>
-          </article>
-          <article class="followup-step">
-            <div class="step-num">03</div>
-            <h3>Partenariats locaux</h3>
-            <p>Recherche de collaborations avec des organisations de soutien à Yaoundé pour pérenniser l'impact.</p>
-          </article>
-        </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="container">
-        <h2 class="page-title programme-title">FAQ</h2>
-        <div class="faq-list faq-list-wide">
-          <details class="faq-item" open>
-            <summary>L'événement est-il gratuit ?</summary>
-            <p>Oui. Participation entièrement gratuite pour les jeunes. Les prix d'émulation récompensent les 3 équipes lauréates.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Qui peut s'inscrire ?</summary>
-            <p>Jeunes de 18 à 30 ans — tout profil intéressé par l'impact écologique, citoyen ou entrepreneurial. Places limitées à 50 participants.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Faut-il venir en équipe ?</summary>
-            <p>Vous pouvez vous inscrire seul ou en équipe. Les groupes de 5 seront complétés si besoin pour atteindre 10 groupes pluridisciplinaires.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Quels sont les horaires ?</summary>
-            <p>De 8h à 18h, samedi 4 juillet 2026 — accueil le matin, pitch et remise de prix en fin de journée.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Comment m'inscrire ?</summary>
-            <p>Remplissez le <a href="#inscription">formulaire d'inscription</a> en bas de page. Vous recevrez une confirmation par e-mail une fois votre place validée.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Où se déroule l'événement ?</summary>
-            <p>Le concours du 4 juillet se déroule au Lycée technique et Commercial de Yaoundé.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section class="block-section" id="reglement">
-      <div class="container block-row">
-        <h2 class="block-title block-title-col">RÈGLEMENT<br>DU<br>CONCOURS</h2>
-        <div class="block-content reglement">
-          <ul>
-            <li>Initiative à but non lucratif — sans recherche de profit pour les organisateurs.</li>
-            <li>Participation ouverte aux jeunes majeurs ou mineurs avec autorisation parentale.</li>
-            <li>Les projets restent la propriété des équipes ; l'organisation peut citer les lauréats à des fins de communication.</li>
-            <li>Le jury décerne les prix d'émulation selon la faisabilité, l'impact social, l'innovation et la qualité du pitch.</li>
-            <li>L'organisateur se réserve le droit d'adapter le programme en cas de force majeure.</li>
-          </ul>
-          <p class="footnote-inline">Règlement complet disponible sur demande à contact@odyssee-express.org</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="block-section section-alt" id="inscription-3-juillet">
-      <div class="container block-row inscription-row">
-        <div class="inscription-heading">
-          <h2 class="block-title block-title-col">INSCRIPTION<br>03 JUILLET</h2>
-          <p class="inscription-lead">Bénévoles · Opération Quartier Propre · Cité Verte</p>
-        </div>
-
-        <div class="inscription-form-wrap">
-          <p class="form-intro">
-            Inscrivez-vous pour participer à la journée de terrain du vendredi 3 juillet 2026.
-            Les informations sur le déploiement sur place seront envoyées individuellement
-            à chaque participant avant le jour J. Après validation, envoyez votre demande
-            par WhatsApp, e-mail ou copiez le message.
-          </p>
-
-          <div class="form-feedback" id="volunteerFeedback" role="status" aria-live="polite"></div>
-
-          <form class="registration-form" id="volunteerForm" novalidate>
-            <input type="hidden" name="evenement" value="operation_quartier_propre">
-
-            <div class="hp-field" aria-hidden="true">
-              <label for="volunteerWebsite">Ne pas remplir</label>
-              <input type="text" id="volunteerWebsite" name="website" tabindex="-1" autocomplete="off">
-            </div>
-
-            <div class="form-row">
-              <div class="form-field">
-                <label for="volunteerPrenom">Prénom <span class="req">*</span></label>
-                <input type="text" id="volunteerPrenom" name="prenom" required autocomplete="given-name" maxlength="80">
-              </div>
-              <div class="form-field">
-                <label for="volunteerNom">Nom <span class="req">*</span></label>
-                <input type="text" id="volunteerNom" name="nom" required autocomplete="family-name" maxlength="80">
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-field">
-                <label for="volunteerEmail">E-mail <span class="req">*</span></label>
-                <input type="email" id="volunteerEmail" name="email" required autocomplete="email" maxlength="120">
-              </div>
-              <div class="form-field">
-                <label for="volunteerTelephone">Téléphone / WhatsApp <span class="req">*</span></label>
-                <input type="tel" id="volunteerTelephone" name="telephone" required autocomplete="tel" placeholder="+237 6XX XX XX XX" maxlength="30">
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-field">
-                <label for="volunteerAge">Âge</label>
-                <input type="number" id="volunteerAge" name="age" min="16" max="80" placeholder="Ex. 22">
-              </div>
-              <div class="form-field">
-                <label for="volunteerQuartier">Quartier / commune</label>
-                <input type="text" id="volunteerQuartier" name="quartier" maxlength="120" placeholder="Ex. Cité Verte, Yaoundé II...">
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-field">
-                <label for="volunteerDisponibilite">Disponibilité <span class="req">*</span></label>
-                <select id="volunteerDisponibilite" name="disponibilite" required>
-                  <option value="">— Choisir —</option>
-                  <option value="Toute la journée">Toute la journée</option>
-                  <option value="Matin uniquement">Matin uniquement</option>
-                  <option value="Après-midi uniquement">Après-midi uniquement</option>
-                </select>
-              </div>
-              <div class="form-field">
-                <label for="volunteerGroupe">Vous venez</label>
-                <select id="volunteerGroupe" name="groupe">
-                  <option value="Seul(e)">Seul(e)</option>
-                  <option value="Avec un groupe">Avec un groupe</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-field">
-              <label for="volunteerMessage">Message (optionnel)</label>
-              <textarea id="volunteerMessage" name="message" maxlength="800" placeholder="Association, groupe, questions, besoins particuliers..."></textarea>
-            </div>
-
-            <div class="form-consent">
-              <label>
-                <input type="checkbox" id="volunteerConsent" name="consent" required value="oui">
-                J'accepte que mes données soient utilisées pour traiter mon inscription à l'Opération Quartier Propre du 3 juillet 2026 et pour me recontacter à ce sujet.
-              </label>
-            </div>
-
-            <button type="submit" class="btn-register btn-register-lg" id="volunteerSubmitBtn">JE M'INSCRIS COMME BÉNÉVOLE</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="block-section" id="inscription">
-      <div class="container block-row inscription-row">
-        <div class="inscription-heading">
-          <h2 class="block-title block-title-col">INSCRIPTION<br>04 JUILLET</h2>
-          <p class="inscription-lead">Inscription gratuite — 50 places · 30 déjà confirmées</p>
-        </div>
-
-        <div class="inscription-form-wrap">
-          <p class="form-intro">
-            Remplissez le formulaire ci-dessous. Notre équipe vous confirmera votre place par e-mail.
-            Chaque participant doit venir avec son ordinateur portable le 4 juillet.
-            Les informations sur le déploiement sur place seront envoyées individuellement
-            à chaque participant avant le jour J. Après validation, envoyez votre demande
-            par WhatsApp, e-mail ou copiez le message.
-          </p>
-
-          <div class="form-feedback" id="formFeedback" role="status" aria-live="polite"></div>
-
-          <form class="registration-form" id="registrationForm" novalidate>
-            <input type="hidden" name="evenement" value="concours_eco_conception">
-
-            <div class="hp-field" aria-hidden="true">
-              <label for="website">Ne pas remplir</label>
-              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-            </div>
-
-            <div class="form-row">
-              <div class="form-field">
-                <label for="prenom">Prénom <span class="req">*</span></label>
-                <input type="text" id="prenom" name="prenom" required autocomplete="given-name" maxlength="80">
-              </div>
-              <div class="form-field">
-                <label for="nom">Nom <span class="req">*</span></label>
-                <input type="text" id="nom" name="nom" required autocomplete="family-name" maxlength="80">
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-field">
-                <label for="email">E-mail <span class="req">*</span></label>
-                <input type="email" id="email" name="email" required autocomplete="email" maxlength="120">
-              </div>
-              <div class="form-field">
-                <label for="telephone">Téléphone / WhatsApp <span class="req">*</span></label>
-                <input type="tel" id="telephone" name="telephone" required autocomplete="tel" placeholder="+237 6XX XX XX XX" maxlength="30">
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-field">
-                <label for="profil">Profil <span class="req">*</span></label>
-                <select id="profil" name="profil" required>
-                  <option value="">— Choisir —</option>
-                  <option value="Technique / pratique">Technique / pratique</option>
-                  <option value="Créatif / communication">Créatif / communication</option>
-                  <option value="Citoyen / terrain">Citoyen / terrain</option>
-                  <option value="Entrepreneurial / gestion de projet">Entrepreneurial / gestion de projet</option>
-                  <option value="Autre profil intéressé">Autre profil intéressé</option>
-                </select>
-              </div>
-              <div class="form-field">
-                <label for="mode">Inscription <span class="req">*</span></label>
-                <select id="mode" name="mode" required>
-                  <option value="">— Choisir —</option>
-                  <option value="Seul(e) — équipe complétée le jour J">Seul(e) — équipe complétée le jour J</option>
-                  <option value="En équipe">En équipe</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-field optional-hidden" id="equipeField">
-              <label for="nom_equipe">Nom de l'équipe</label>
-              <input type="text" id="nom_equipe" name="nom_equipe" maxlength="100" placeholder="Optionnel si votre équipe n'a pas encore de nom">
-            </div>
-
-            <div class="form-field">
-              <label for="etablissement">Établissement / filière</label>
-              <input type="text" id="etablissement" name="etablissement" maxlength="120" placeholder="Université, école, domaine d'études…">
-            </div>
-
-            <div class="form-field">
-              <label for="message">Message (optionnel)</label>
-              <textarea id="message" name="message" maxlength="800" placeholder="Motivation, compétences, questions…"></textarea>
-            </div>
-
-            <div class="form-consent">
-              <label>
-                <input type="checkbox" id="consent" name="consent" required value="oui">
-                J'accepte que mes données soient utilisées pour traiter mon inscription à L'Odyssée Express 2026 et pour me recontacter à ce sujet.
-              </label>
-            </div>
-
-            <button type="submit" class="btn-register btn-register-lg" id="submitBtn">JE M'INSCRIS !</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-contact" id="contact">
-      <div class="container contact-grid">
-        <div>
-          <h2 class="section-title light">Nous contacter</h2>
-          <p class="contact-lead">Partenariats, presse, inscriptions ou informations sur le projet.</p>
-          <p class="org-name">L'Odyssée Express</p>
-          <p class="contact-links">
-            <a href="tel:+32465339448">+32 465 33 94 48</a><br>
-            <a href="mailto:contact@odyssee-express.org">contact@odyssee-express.org</a><br>
-            <a href="mailto:gedeon.tchuisseu@odyssee-express.org">gedeon.tchuisseu@odyssee-express.org</a>
-          </p>
-        </div>
-        <div class="contact-card">
-          <h3>Vous êtes une institution ?</h3>
-          <p>Partenariats institutionnels et <strong>soutien logistique</strong> recherchés (mise à disposition de locaux, visibilité, accompagnement des lauréats).</p>
-          <a href="mailto:contact@odyssee-express.org?subject=Partenariat%20L'Odyss%C3%A9e%20Express" class="btn btn-primary btn-block">Proposer un partenariat</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-col">
-        <h3>Accès rapides</h3>
-        <ul>
-          <li><a href="https://lodysseedelobjet.wallonie.be/home.html" target="_blank" rel="noopener">Odyssée de l'Objet (ODO)</a></li>
-          <li><a href="https://lodysseedelobjet48h.wallonie.be/home.html" target="_blank" rel="noopener">Odyssée de l'objet 48H</a></li>
-          <li><a href="#reglement">Règlement du concours</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Le concours</h3>
-        <ul>
-          <li><a href="#concours">Présentation</a></li>
-          <li><a href="#defi">Le défi</a></li>
-          <li><a href="#programme">Programme</a></li>
-          <li><a href="#soutiens">Partenariats</a></li>
-          <li><a href="#suivi">Après l'événement</a></li>
-          <li><a href="#inscription">Inscription</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Nous contacter</h3>
-        <ul>
-          <li><a href="mailto:contact@odyssee-express.org">contact@odyssee-express.org</a></li>
-          <li><a href="tel:+32465339448">+32 465 33 94 48</a></li>
-        </ul>
+      <div class="pillar reveal">
+        <span class="tag">Pilier 03</span>
+        <h3>Odyssée Smart City</h3>
+        <p>La plateforme technique de l'initiative, dont <em>Yaoundé Propreté</em> est le premier module : tracer, mesurer et rémunérer la gestion des déchets à l'échelle d'un quartier, puis étendre la même architecture à d'autres services urbains.</p>
       </div>
     </div>
-    <div class="container footer-bottom">
-      <p><strong>L'Odyssée Express</strong> · La Compétition d'Éco-Conception · Yaoundé 2026</p>
-      <p>Inspiré par <a href="https://lodysseedelobjet48h.wallonie.be/home.html" target="_blank" rel="noopener">L'Odyssée de l'objet en 48H</a> — odyssee-express.org</p>
+  </div>
+</section>
+
+<!-- ============ ÉDITION 2026 ============ -->
+<section class="band-alt" id="yaounde2026">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow eyebrow--ink">Édition inaugurale · Yaoundé, 3–4 juillet 2026</p>
+      <h2>Ce que l'initiative a déjà livré.</h2>
+      <p class="lead muted">Conçue depuis Bruxelles, financée par le Bureau étudiant de Polytechnique et le Cercle polytechnique de Bruxelles (ULB), la première édition s'est tenue à la Cité Verte, dans la commune de Yaoundé II. Une journée de collecte de données environnementales avec les habitants, puis un sprint d'innovation de dix heures conclu par un Grand Oral devant un jury officiel.</p>
     </div>
-  </footer>
 
-  <script>
-    const toggle = document.getElementById('navToggle');
-    const nav = document.getElementById('mainNav');
-    toggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open);
-    });
-    nav.querySelectorAll('a').forEach((a) => {
-      a.addEventListener('click', () => {
-        nav.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      });
-    });
+    <div class="facts reveal">
+      <div class="fact"><span class="n">9</span><span class="l">Équipes pluridisciplinaires en compétition</span></div>
+      <div class="fact"><span class="n">10 h</span><span class="l">De sprint d'innovation continu</span></div>
+      <div class="fact"><span class="n">4</span><span class="l">Partenaires institutionnels engagés</span></div>
+      <div class="fact"><span class="n">3</span><span class="l">Conventions d'incubation signées</span></div>
+    </div>
+  </div>
+</section>
 
-    const volunteerForm = document.getElementById('volunteerForm');
-    const volunteerFeedback = document.getElementById('volunteerFeedback');
-    const volunteerSubmitBtn = document.getElementById('volunteerSubmitBtn');
-    const concoursForm = document.getElementById('registrationForm');
-    const concoursFeedback = document.getElementById('formFeedback');
-    const modeSelect = document.getElementById('mode');
-    const equipeField = document.getElementById('equipeField');
-    const concoursSubmitBtn = document.getElementById('submitBtn');
+<!-- ============ LAURÉATS ============ -->
+<section class="band-paper" id="laureats">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow eyebrow--ink">Les équipes accompagnées</p>
+      <h2>Trois projets sous convention.</h2>
+      <p class="lead muted">Chaque équipe lauréate est accompagnée pendant vingt-quatre mois. L'accompagnement est contractuel : les porteurs conservent l'intégralité de leur propriété intellectuelle et la totalité du pouvoir de gestion sur leur projet.</p>
+    </div>
 
-    modeSelect.addEventListener('change', () => {
-      equipeField.classList.toggle('visible', modeSelect.value === 'En équipe');
-    });
+    <div class="grid g3">
+      <div class="laureat reveal">
+        <p class="role">Lauréat · Édition 2026</p>
+        <h3>BIOVALOR Yaoundé</h3>
+        <p>Valorisation de la matière organique issue des déchets ménagers du quartier.</p>
+      </div>
+      <div class="laureat reveal">
+        <p class="role">Lauréat · Édition 2026</p>
+        <h3>GIC Digital</h3>
+        <p>Outils numériques au service de l'organisation de la collecte et du suivi des flux.</p>
+      </div>
+      <div class="laureat reveal">
+        <p class="role">Lauréat · Édition 2026</p>
+        <h3>Green Dream Team</h3>
+        <p>Solutions de réemploi et de sensibilisation portées à l'échelle du voisinage.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    const contactEmail = 'contact@odyssee-express.org';
-    const whatsappNumber = '32465339448';
+<!-- ============ PLATEFORME ============ -->
+<section class="band-navy" id="plateforme">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Plateforme · Odyssée Smart City</p>
+      <h2>Yaoundé Propreté : rendre la propreté traçable, et donc payable.</h2>
+      <p class="lead muted">Un foyer trie ses déchets dans des sacs codés. Un collecteur les scanne et les achemine jusqu'au point de regroupement. Le centre de tri valide le contenu. Chaque étape est horodatée — et chaque acteur est rémunéré pour ce qu'il a réellement fait. C'est la première application concrète de la plateforme.</p>
+    </div>
 
-    function line(label, value) {
-      return `${label}: ${value || '—'}`;
+    <div class="modules reveal">
+      <div class="module">
+        <span class="st">Module actif</span>
+        <strong>Smart Waste</strong>
+        <span class="d">Tri à la source, collecte tracée, tri final et valorisation.</span>
+      </div>
+      <div class="module">
+        <span class="st">Extension prévue</span>
+        <strong>Smart Water</strong>
+        <span class="d">Suivi des points d'eau et de la qualité de la ressource.</span>
+      </div>
+      <div class="module">
+        <span class="st">Extension prévue</span>
+        <strong>Smart Roads</strong>
+        <span class="d">Signalement et suivi de l'état de la voirie de quartier.</span>
+      </div>
+      <div class="module">
+        <span class="st">Extension prévue</span>
+        <strong>Smart Citizen</strong>
+        <span class="d">Participation des habitants aux services de leur quartier.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALENDRIER ============ -->
+<section class="band-paper" id="editions">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow eyebrow--ink">Calendrier des éditions</p>
+      <h2>Le circuit annuel.</h2>
+      <p class="lead muted">Une édition par ville, une ville par saison. Les lauréats des éditions africaines sont invités à présenter leurs projets lors de l'édition bruxelloise.</p>
+    </div>
+
+    <ul class="editions">
+      <li class="edition reveal">
+        <span class="date">3–4 juillet 2026</span>
+        <span><span class="title">Green Hackathon Yaoundé #1</span><span class="place">Cité Verte, Yaoundé II — Cameroun</span></span>
+        <span class="status done">Livré</span>
+      </li>
+      <li class="edition reveal">
+        <span class="date">19 décembre 2026</span>
+        <span><span class="title">Green Hackathon Yaoundé #2</span><span class="place">Yaoundé — Cameroun</span></span>
+        <span class="status next">Prochaine</span>
+      </li>
+      <li class="edition reveal">
+        <span class="date">3 avril 2027</span>
+        <span><span class="title">Green Hackathon Kinshasa</span><span class="place">Kinshasa — République démocratique du Congo</span></span>
+        <span class="status plan">Programmée</span>
+      </li>
+      <li class="edition reveal">
+        <span class="date">6 novembre 2027</span>
+        <span><span class="title">Brussels Green Hackathon</span><span class="place">Région de Bruxelles-Capitale — Belgique</span></span>
+        <span class="status plan">Programmée</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ PARTENAIRES ============ -->
+<section class="band-alt" id="partenaires">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow eyebrow--ink">Soutiens institutionnels</p>
+      <h2>Quatre institutions ont accompagné la première édition.</h2>
+    </div>
+
+    <div class="partners reveal">
+      <div class="partner">
+        <p class="kind">Haut patronage scientifique</p>
+        <p class="who">MINRESI</p>
+        <span class="det">Ministère de la Recherche scientifique et de l'Innovation — Cameroun</span>
+      </div>
+      <div class="partner">
+        <p class="kind">Parrainage diplomatique</p>
+        <p class="who">Ambassade de Belgique au Cameroun</p>
+        <span class="det">Reconnaissance officielle de l'édition inaugurale</span>
+      </div>
+      <div class="partner">
+        <p class="kind">Appui officiel</p>
+        <p class="who">Mairie de Yaoundé II</p>
+        <span class="det">Commune d'accueil de l'opération citoyenne de la Cité Verte</span>
+      </div>
+      <div class="partner">
+        <p class="kind">Accompagnement méthodologique</p>
+        <p class="who">Service public de Wallonie</p>
+        <span class="det">Programme L'Odyssée de l'Objet — matrice méthodologique du hackathon</span>
+      </div>
+    </div>
+
+    <p class="muted reveal" style="margin-top:28px;font-size:16px;max-width:70ch">
+      L'édition inaugurale a également bénéficié du soutien financier du BEP — Bureau étudiant de Polytechnique et du Cercle polytechnique de Bruxelles (ULB).
+    </p>
+  </div>
+</section>
+
+<!-- ============ ASBL ============ -->
+<section class="band-paper" id="asbl">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow eyebrow--ink">La structure</p>
+      <h2>Une ASBL de droit belge.</h2>
+      <p class="lead muted">L'Odyssée Express est portée par une association sans but lucratif de droit belge, dont le siège est établi en Région de Bruxelles-Capitale. Les mandats d'administrateur sont exercés à titre gratuit.</p>
+    </div>
+
+    <ul class="board reveal">
+      <li><span class="fn">Président</span><span class="nm">Baudouin Kamda</span></li>
+      <li><span class="fn">Vice-président · gestion journalière</span><span class="nm">Gédéon Sylvestre Tchuisseu</span></li>
+      <li><span class="fn">Secrétaire</span><span class="nm">Bertha Makane Lobe</span></li>
+      <li><span class="fn">Trésorier</span><span class="nm">Dieudonné Francis Noah Mengue</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="band-navy" id="contact">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <p class="eyebrow">Nous écrire</p>
+      <h2 style="margin-bottom:20px">Vous cherchez un partenaire pour votre édition ?</h2>
+      <p class="muted">Entreprises, communes, universités, incubateurs, bailleurs : écrivez-nous en une ligne ce que vous voulez organiser ou soutenir. Nous répondons avec un format, un calendrier et un budget.</p>
+      <p style="margin-top:26px"><a class="btn btn-primary" href="mailto:gedeon.tchuisseu@odyssee-express.org?subject=Partenariat%20-%20L%27Odyss%C3%A9e%20Express">Écrire à l'équipe</a></p>
+    </div>
+    <div class="reveal">
+      <ul class="coord">
+        <li><span class="k">Courriel</span><a href="mailto:gedeon.tchuisseu@odyssee-express.org">gedeon.tchuisseu@odyssee-express.org</a></li>
+        <li><span class="k">Téléphone</span><a href="tel:+32465339448">+32 465 33 94 48</a></li>
+        <li><span class="k">Siège de l'association</span>Boulevard de la Cambre 32/48<br>1000 Bruxelles, Belgique</li>
+        <li><span class="k">Terrain</span>Yaoundé, Cameroun</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="sm">L'ODYSSÉE EXPRESS · BRUXELLES ↔ YAOUNDÉ</span>
+    <span class="sm">ASBL de droit belge · Numéro d'entreprise en cours d'attribution</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('in'); });
+      return;
     }
-
-    function buildMessage(payload) {
-      if (payload.evenement === 'operation_quartier_propre') {
-        return [
-          'Bonjour,',
-          '',
-          "Je souhaite m'inscrire comme bénévole à l'Opération Quartier Propre du 3 juillet 2026.",
-          '',
-          line('Prénom', payload.prenom),
-          line('Nom', payload.nom),
-          line('E-mail', payload.email),
-          line('Téléphone / WhatsApp', payload.telephone),
-          line('Âge', payload.age),
-          line('Quartier / commune', payload.quartier),
-          line('Disponibilité', payload.disponibilite),
-          line('Je viens', payload.groupe),
-          line('Message', payload.message),
-          '',
-          "Merci de confirmer mon inscription et de m'ajouter à la liste des participants.",
-        ].join('\n');
-      }
-
-      return [
-        'Bonjour,',
-        '',
-        "Je souhaite m'inscrire au concours d'éco-conception L'Odyssée Express du 4 juillet 2026.",
-        '',
-        line('Prénom', payload.prenom),
-        line('Nom', payload.nom),
-        line('E-mail', payload.email),
-        line('Téléphone / WhatsApp', payload.telephone),
-        line('Profil', payload.profil),
-        line('Inscription', payload.mode),
-        line("Nom de l'équipe", payload.nom_equipe),
-        line('Établissement / filière', payload.etablissement),
-        line('Message', payload.message),
-        '',
-        "Je confirme que je viendrai avec mon ordinateur portable le 4 juillet.",
-        "Merci de confirmer mon inscription et de m'ajouter à la liste des participants.",
-      ].join('\n');
-    }
-
-    function buildEmail(payload) {
-      const body = buildMessage(payload);
-      if (payload.evenement === 'operation_quartier_propre') {
-        return {
-          subject: `Inscription bénévole 3 juillet — ${payload.prenom} ${payload.nom}`,
-          body,
-        };
-      }
-
-      return {
-        subject: `Inscription concours 4 juillet — ${payload.prenom} ${payload.nom}`,
-        body,
-      };
-    }
-
-    function buildMailto(payload) {
-      const email = buildEmail(payload);
-      return `mailto:${contactEmail}?subject=${encodeURIComponent(email.subject)}&body=${encodeURIComponent(email.body)}`;
-    }
-
-    function buildWhatsApp(payload) {
-      return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(buildMessage(payload))}`;
-    }
-
-    async function copyText(text) {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(text);
-        return;
-      }
-
-      const textarea = document.createElement('textarea');
-      textarea.value = text;
-      textarea.setAttribute('readonly', '');
-      textarea.style.position = 'fixed';
-      textarea.style.left = '-9999px';
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      textarea.remove();
-    }
-
-    function setupInscriptionForm(form, feedback, submitBtn, afterSubmit) {
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        feedback.className = 'form-feedback';
-        feedback.replaceChildren();
-
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          return;
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e, i) {
+        if (e.isIntersecting) {
+          setTimeout(function () { e.target.classList.add('in'); }, Math.min(i * 70, 280));
+          obs.unobserve(e.target);
         }
-
-        const formData = new FormData(form);
-        const payload = Object.fromEntries(formData.entries());
-        const message = buildMessage(payload);
-        const whatsapp = buildWhatsApp(payload);
-        const mailto = buildMailto(payload);
-        const actions = document.createElement('div');
-        const whatsappLink = document.createElement('a');
-        const mailLink = document.createElement('a');
-        const copyButton = document.createElement('button');
-
-        actions.className = 'form-action-grid';
-        whatsappLink.href = whatsapp;
-        whatsappLink.target = '_blank';
-        whatsappLink.rel = 'noopener';
-        whatsappLink.className = 'form-action-btn form-action-primary';
-        whatsappLink.textContent = 'Envoyer par WhatsApp';
-        mailLink.href = mailto;
-        mailLink.className = 'form-action-btn';
-        mailLink.textContent = 'Envoyer par e-mail';
-        copyButton.type = 'button';
-        copyButton.className = 'form-action-btn';
-        copyButton.textContent = 'Copier le message';
-        copyButton.addEventListener('click', async () => {
-          await copyText(message);
-          copyButton.textContent = 'Message copié';
-        });
-        actions.append(whatsappLink, mailLink, copyButton);
-
-        feedback.className = 'form-feedback visible success';
-        feedback.append(
-          'Votre demande est prête. Envoyez-la par WhatsApp de préférence, ou utilisez l’e-mail / la copie manuelle :',
-          actions
-        );
-        if (afterSubmit) afterSubmit();
-        window.location.href = whatsapp;
       });
-    }
-
-    setupInscriptionForm(
-      volunteerForm,
-      volunteerFeedback,
-      volunteerSubmitBtn
-    );
-
-    setupInscriptionForm(
-      concoursForm,
-      concoursFeedback,
-      concoursSubmitBtn,
-      () => equipeField.classList.remove('visible')
-    );
-  </script>
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    items.forEach(function (el) { obs.observe(el); });
+  })();
+</script>
 </body>
 </html>

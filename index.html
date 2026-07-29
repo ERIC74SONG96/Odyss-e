@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>L'Odyssée Express — Éco-innovation Bruxelles ↔ Afrique centrale</title>
-<meta name="description" content="L'Odyssée Express est une initiative belgo-camerounaise d'éco-innovation : Green Hackathon, incubation des équipes lauréates et plateforme Odyssée Smart City.">
+<meta name="description" content="L'Odyssée Express — Cabinet indépendant de gestion de projets et d'innovation environnementale à Bruxelles. Conseil, solutions numériques, hackathons et accompagnement pour collectivités, ONG et entreprises.">
 <meta property="og:title" content="L'Odyssée Express">
-<meta property="og:description" content="Éco-innovation et coopération Belgique – Afrique centrale. Green Hackathon, incubation, Odyssée Smart City.">
+<meta property="og:description" content="Cabinet de gestion de projets et d'innovation environnementale · Bruxelles, à l'international. Green Hackathon, conseil B2B, solutions numériques.">
 <meta property="og:locale" content="fr_BE">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2316305c'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23E07B1A' stroke-width='2.5'/%3E%3C/svg%3E">
 <style>
@@ -240,12 +240,38 @@
   .partner .det{font-size:15.5px;color:var(--muted);margin-top:8px;display:block}
   @media(max-width:760px){.partners{grid-template-columns:1fr}}
 
-  /* gouvernance */
-  .board{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:18px 32px}
-  .board li{border-left:2px solid var(--gold);padding-left:16px}
-  .board .fn{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px}
-  .board .nm{font-size:18px;color:var(--navy)}
-  @media(max-width:620px){.board{grid-template-columns:1fr}}
+  /* services / cabinet B2B */
+  .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+  .service{background:#fff;padding:28px 26px}
+  .service .num{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:10px}
+  .service h3{margin-bottom:10px;font-size:20px}
+  .service p{font-size:16px;color:var(--muted);margin:0 0 14px}
+  .service .price{font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy)}
+  @media(max-width:760px){.services-grid{grid-template-columns:1fr}}
+
+  .clients{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+  .client{border-top:1px solid var(--rule);padding-top:18px}
+  .client .cl{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px}
+  .client p{font-size:15.5px;color:rgba(255,255,255,.68);margin:0;line-height:1.55}
+  @media(max-width:900px){.clients{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.clients{grid-template-columns:1fr}}
+
+  /* fondateur / entrepreneur */
+  .founder-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:start}
+  @media(max-width:900px){.founder-grid{grid-template-columns:1fr;gap:32px}}
+  .founder-role{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 16px}
+  .founder-bio p{font-size:17px;color:var(--muted)}
+  .founder-links{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px}
+  .founder-links a{
+    font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;text-decoration:none;color:var(--navy);
+    border:1px solid var(--rule);padding:10px 16px;transition:.2s;
+  }
+  .founder-links a:hover{border-color:var(--orange);color:var(--orange)}
+  .creds{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+  .creds li{padding:18px 0;border-bottom:1px solid var(--rule)}
+  .creds .cr{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:5px}
+  .creds .tx{font-size:16.5px;color:var(--muted);line-height:1.5}
 
   /* contact */
   .contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px}
@@ -286,10 +312,12 @@
     <nav aria-label="Navigation principale">
       <ul class="nav-links">
         <li><a href="#initiative">L'initiative</a></li>
+        <li><a href="#services">Services</a></li>
         <li><a href="#yaounde2026">Édition 2026</a></li>
         <li><a href="#laureats">Lauréats</a></li>
         <li><a href="#editions">Calendrier</a></li>
         <li><a href="#partenaires">Partenaires</a></li>
+        <li><a href="#fondateur">Le fondateur</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -305,8 +333,8 @@
     <h1>Concevoir à Bruxelles, <em>exécuter</em> sur le terrain.</h1>
     <p class="hero-lead">L'Odyssée Express fait travailler ensemble des étudiants, des institutions et des entreprises sur des solutions concrètes de transition écologique — puis accompagne les équipes retenues jusqu'à la création de leur entreprise.</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="#yaounde2026">Voir l'édition inaugurale</a>
-      <a class="btn btn-ghost" href="#contact">Devenir partenaire</a>
+      <a class="btn btn-primary" href="#services">Nos services B2B</a>
+      <a class="btn btn-ghost" href="#yaounde2026">Voir l'édition inaugurale</a>
     </div>
 
     <!-- Signature : l'axe des éditions -->
@@ -342,7 +370,7 @@
     <div class="sec-head reveal">
       <p class="eyebrow eyebrow--ink">L'initiative</p>
       <h2>Une méthode née à Bruxelles, éprouvée en Afrique centrale.</h2>
-      <p class="lead muted">L'Odyssée Express est une initiative belgo-camerounaise fondée par Gédéon Sylvestre Tchuisseu, étudiant ingénieur à l'École polytechnique de Bruxelles (ULB). Elle reprend la méthodologie d'éco-conception du concours <em>L'Odyssée de l'Objet</em> du Service public de Wallonie et l'applique à des problèmes environnementaux urbains, là où ils se posent.</p>
+      <p class="lead muted">L'Odyssée Express est un cabinet indépendant fondé par Gédéon Sylvestre Tchuisseu, étudiant ingénieur à l'École polytechnique de Bruxelles (ULB). Il reprend la méthodologie d'éco-conception du concours <em>L'Odyssée de l'Objet</em> du Service public de Wallonie et l'applique à des problèmes environnementaux urbains, là où ils se posent.</p>
     </div>
 
     <div class="grid g3">
@@ -362,6 +390,81 @@
         <p>La plateforme technique de l'initiative, dont <em>Yaoundé Propreté</em> est le premier module : tracer, mesurer et rémunérer la gestion des déchets à l'échelle d'un quartier, puis étendre la même architecture à d'autres services urbains.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES / CABINET ============ -->
+<section class="band-navy" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Cabinet · Prestations B2B</p>
+      <h2>Gestion de projets et innovation environnementale.</h2>
+      <p class="lead muted">L'Odyssée Express est un cabinet indépendant basé à Bruxelles. Nous intervenons en amont de l'exécution : conception, méthode, coordination et outils numériques — pour les collectivités, les ONG, les entreprises et les bailleurs de fonds. La valeur intellectuelle est créée en Région bruxelloise ; le déploiement opérationnel peut s'effectuer à l'international.</p>
+    </div>
+
+    <div class="services-grid reveal">
+      <article class="service">
+        <span class="num">Service 01</span>
+        <h3>Conseil en gestion de projets environnementaux</h3>
+        <p>Diagnostic, planification, coordination et suivi de projets d'économie circulaire et de transition écologique. Transmission méthodologique et montée en compétence des équipes clientes.</p>
+        <span class="price">500 – 3 000 € par mission</span>
+      </article>
+      <article class="service">
+        <span class="num">Service 02</span>
+        <h3>Conception de solutions numériques</h3>
+        <p>Outils de gestion environnementale : suivi GPS, traçabilité par QR code, statistiques, tableaux de bord et gestion des équipes de terrain.</p>
+        <span class="price">Création + maintenance · ≈ 150 €/mois</span>
+      </article>
+      <article class="service">
+        <span class="num">Service 03</span>
+        <h3>Conception de kits et systèmes</h3>
+        <p>Spécification et design de systèmes de collecte intelligente : sacs codés, signalétique, chartes de tri, kits pédagogiques. Propriété intellectuelle détenue par le cabinet ; fabrication sous-traitée ou concédée.</p>
+        <span class="price">Forfait de conception · selon projet</span>
+      </article>
+      <article class="service">
+        <span class="num">Service 04</span>
+        <h3>Organisation d'événements d'innovation</h3>
+        <p>Hackathons, forums, conférences et concours pour entreprises, universités, ONG et collectivités : cadrage, animation, jury, restitution. Le Green Hackathon en est le format de référence.</p>
+        <span class="price">8 000 – 20 000 € · 1 à 2 jours</span>
+      </article>
+      <article class="service" style="grid-column:1/-1">
+        <span class="num">Service 05</span>
+        <h3>Accompagnement de porteurs de projets</h3>
+        <p>Appui méthodologique, structuration, préparation au pitch, mise en réseau et recherche de financements pour les équipes lauréates — sous convention écrite, avec préservation intégrale de la propriété intellectuelle des porteurs.</p>
+        <span class="price">Commission de succès · participation minoritaire possible</span>
+      </article>
+    </div>
+
+    <div class="clients reveal">
+      <div class="client">
+        <span class="cl">Collectivités</span>
+        <p>Communes et administrations : projets de gestion des déchets, propreté urbaine et économie circulaire, en Belgique et à l'international.</p>
+      </div>
+      <div class="client">
+        <span class="cl">ONG &amp; bailleurs</span>
+        <p>Conception, pilotage et suivi de projets environnementaux financés par des organismes publics ou privés.</p>
+      </div>
+      <div class="client">
+        <span class="cl">Entreprises</span>
+        <p>PME bruxelloises et sociétés belges : missions de conseil, solutions numériques, événements internes d'innovation, déploiement à l'étranger.</p>
+      </div>
+      <div class="client">
+        <span class="cl">Universités</span>
+        <p>Événements d'innovation ouverte, programmes d'éco-conception et transmission de méthodologie.</p>
+      </div>
+      <div class="client">
+        <span class="cl">Incubateurs &amp; investisseurs</span>
+        <p>Mise en relation avec des projets qualifiés issus des programmes organisés par le cabinet.</p>
+      </div>
+      <div class="client">
+        <span class="cl">Institutions</span>
+        <p>Partenariats pour répliquer le format Green Hackathon ou co-concevoir des programmes territoriaux.</p>
+      </div>
+    </div>
+
+    <p class="reveal" style="margin-top:32px">
+      <a class="btn btn-primary" href="mailto:gedeon.tchuisseu@odyssee-express.org?subject=Demande%20de%20mission%20-%20L%27Odyss%C3%A9e%20Express">Demander un devis</a>
+    </p>
   </div>
 </section>
 
@@ -489,21 +592,41 @@
   </div>
 </section>
 
-<!-- ============ ASBL ============ -->
-<section class="band-paper" id="asbl">
+<!-- ============ LE FONDATEUR ============ -->
+<section class="band-paper" id="fondateur">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <p class="eyebrow eyebrow--ink">La structure</p>
-      <h2>Une ASBL de droit belge.</h2>
-      <p class="lead muted">L'Odyssée Express est portée par une association sans but lucratif de droit belge, dont le siège est établi en Région de Bruxelles-Capitale. Les mandats d'administrateur sont exercés à titre gratuit.</p>
+    <div class="founder-grid reveal">
+      <div class="founder-bio">
+        <p class="eyebrow eyebrow--ink">Le fondateur</p>
+        <h2>Gédéon Sylvestre Tchuisseu</h2>
+        <p class="founder-role">Entrepreneur indépendant · Étudiant ingénieur (ULB) · Fondateur de L'Odyssée Express</p>
+        <p>Profil hybride : ingénierie, compétences IT (Digital IT Assistant chez ING Belgium), pédagogie et conduite de projets internationaux. Il a conçu depuis Bruxelles et livré à Yaoundé la première édition du Green Hackathon avec le soutien officiel d'un ministère, d'une ambassade et d'une municipalité.</p>
+        <p>Formé à l'éco-conception par le concours <em>L'Odyssée de l'Objet</em> du Service public de Wallonie (UMons, 2024), lauréat du Prix Socrate (EPB) pour un Serious Game sur la transition énergétique, participant au CIVIS Sustainability Challenge 2026 (ULB).</p>
+        <div class="founder-links">
+          <a href="https://www.linkedin.com/in/gedeon-sylvestre-tchuisseu-37b312308" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/ERIC74SONG96" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="mailto:gedeon.tchuisseu@odyssee-express.org">Courriel</a>
+        </div>
+      </div>
+      <ul class="creds">
+        <li>
+          <span class="cr">L'Odyssée Express · 2025 — aujourd'hui</span>
+          <span class="tx">Fondateur &amp; coordinateur — conception, partenariats institutionnels, livraison du programme Yaoundé 2026, incubation de 3 lauréats.</span>
+        </li>
+        <li>
+          <span class="cr">ING Belgium · 2025 — aujourd'hui</span>
+          <span class="tx">Digital IT Assistant (job étudiant) — accompagnement et pédagogie numérique en environnement bancaire.</span>
+        </li>
+        <li>
+          <span class="cr">École Polytechnique de Bruxelles (ULB)</span>
+          <span class="tx">Bachelier ingénieur informatique — analyse, algorithmique, électronique, gestion de projet.</span>
+        </li>
+        <li>
+          <span class="cr">Compétences clés</span>
+          <span class="tx">Gestion de projet international · partenariats institutionnels · hackathons · structuration entrepreneuriale · production documentaire.</span>
+        </li>
+      </ul>
     </div>
-
-    <ul class="board reveal">
-      <li><span class="fn">Président</span><span class="nm">Baudouin Kamda</span></li>
-      <li><span class="fn">Vice-président · gestion journalière</span><span class="nm">Gédéon Sylvestre Tchuisseu</span></li>
-      <li><span class="fn">Secrétaire</span><span class="nm">Bertha Makane Lobe</span></li>
-      <li><span class="fn">Trésorier</span><span class="nm">Dieudonné Francis Noah Mengue</span></li>
-    </ul>
   </div>
 </section>
 
@@ -512,15 +635,16 @@
   <div class="wrap contact-grid">
     <div class="reveal">
       <p class="eyebrow">Nous écrire</p>
-      <h2 style="margin-bottom:20px">Vous cherchez un partenaire pour votre édition ?</h2>
-      <p class="muted">Entreprises, communes, universités, incubateurs, bailleurs : écrivez-nous en une ligne ce que vous voulez organiser ou soutenir. Nous répondons avec un format, un calendrier et un budget.</p>
-      <p style="margin-top:26px"><a class="btn btn-primary" href="mailto:gedeon.tchuisseu@odyssee-express.org?subject=Partenariat%20-%20L%27Odyss%C3%A9e%20Express">Écrire à l'équipe</a></p>
+      <h2 style="margin-bottom:20px">Une mission, un format, un calendrier.</h2>
+      <p class="muted">Communes, ONG, entreprises, universités, bailleurs : décrivez votre besoin en une ligne. Nous répondons avec un périmètre, un calendrier et un budget — que ce soit une mission de conseil, un hackathon sur mesure ou un programme d'accompagnement.</p>
+      <p style="margin-top:26px"><a class="btn btn-primary" href="mailto:gedeon.tchuisseu@odyssee-express.org?subject=Demande%20-%20L%27Odyss%C3%A9e%20Express">Écrire au cabinet</a></p>
     </div>
     <div class="reveal">
       <ul class="coord">
         <li><span class="k">Courriel</span><a href="mailto:gedeon.tchuisseu@odyssee-express.org">gedeon.tchuisseu@odyssee-express.org</a></li>
         <li><span class="k">Téléphone</span><a href="tel:+32465339448">+32 465 33 94 48</a></li>
-        <li><span class="k">Siège de l'association</span>Boulevard de la Cambre 32/48<br>1000 Bruxelles, Belgique</li>
+        <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/gedeon-sylvestre-tchuisseu-37b312308" target="_blank" rel="noopener noreferrer">gedeon-sylvestre-tchuisseu</a></li>
+        <li><span class="k">Siège</span>Boulevard de la Cambre 32/48<br>1000 Bruxelles, Belgique</li>
         <li><span class="k">Terrain</span>Yaoundé, Cameroun</li>
       </ul>
     </div>
@@ -531,8 +655,8 @@
 
 <footer>
   <div class="wrap foot">
-    <span class="sm">L'ODYSSÉE EXPRESS · BRUXELLES ↔ YAOUNDÉ</span>
-    <span class="sm">ASBL de droit belge · Numéro d'entreprise en cours d'attribution</span>
+    <span class="sm">L'ODYSSÉE EXPRESS · CABINET INDÉPENDANT · BRUXELLES ↔ YAOUNDÉ</span>
+    <span class="sm">Gédéon Sylvestre Tchuisseu · Entrepreneur · Région de Bruxelles-Capitale</span>
   </div>
 </footer>
 

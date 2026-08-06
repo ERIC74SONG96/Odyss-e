@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>L'Odyssée Express — Éco-innovation Bruxelles ↔ Afrique centrale</title>
+<title>L'Odyssée Express — Cabinet de gestion de projets & innovation environnementale</title>
 <meta name="description" content="L'Odyssée Express — Cabinet indépendant de gestion de projets et d'innovation environnementale à Bruxelles. Conseil, solutions numériques, hackathons et accompagnement pour collectivités, ONG et entreprises.">
 <meta property="og:title" content="L'Odyssée Express">
 <meta property="og:description" content="Cabinet de gestion de projets et d'innovation environnementale · Bruxelles, à l'international. Green Hackathon, conseil B2B, solutions numériques.">
@@ -273,6 +273,49 @@
   .creds .cr{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:5px}
   .creds .tx{font-size:16.5px;color:var(--muted);line-height:1.5}
 
+  /* réalisations */
+  .real-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:48px}
+  .real-item{background:var(--paper);padding:28px 26px}
+  .band-alt .real-item{background:var(--paper-alt)}
+  .real-item .rt{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:8px}
+  .real-item h3{margin-bottom:10px;font-size:20px}
+  .real-item p{font-size:16px;color:var(--muted);margin:0}
+  @media(max-width:760px){.real-grid{grid-template-columns:1fr}}
+
+  /* galerie photos */
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+  .gallery-card{position:relative;overflow:hidden;border:1px solid var(--rule);background:#fff;min-height:220px}
+  .gallery-card img{display:block;width:100%;height:220px;object-fit:cover}
+  .gallery-cap{padding:16px 18px}
+  .gallery-cap .gs{font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:6px}
+  .gallery-cap p{font-size:15px;color:var(--muted);margin:0 0 10px;line-height:1.5}
+  .gallery-cap a{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--gold)}
+  .gallery-cap a:hover{color:var(--orange)}
+  .gallery-placeholder{display:flex;align-items:center;justify-content:center;height:220px;background:linear-gradient(145deg,var(--navy-deep),var(--navy));color:rgba(255,255,255,.55);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:20px}
+  @media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.gallery{grid-template-columns:1fr}}
+
+  /* actualités */
+  .news{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+  .news-item{display:grid;grid-template-columns:130px 1fr;gap:24px;padding:26px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+  .news-item .nd{font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--navy)}
+  .news-item h3{font-size:20px;margin-bottom:8px}
+  .news-item p{font-size:16px;color:var(--muted);margin:0 0 10px}
+  .news-item a{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--gold)}
+  .news-item a:hover{color:var(--orange)}
+  @media(max-width:620px){.news-item{grid-template-columns:1fr;gap:8px}}
+
+  /* mentions légales */
+  .legal{font-size:15.5px;color:var(--muted);max-width:78ch}
+  .legal h3{font-size:18px;color:var(--navy);margin:28px 0 10px}
+  .legal h3:first-child{margin-top:0}
+  .legal p{margin:0 0 1em}
+  .legal ul{margin:0 0 1em;padding-left:1.2em}
+  .legal li{margin-bottom:.4em}
+  .foot-links{display:flex;flex-wrap:wrap;gap:18px;margin-top:14px}
+  .foot-links a{color:rgba(255,255,255,.75);font-family:var(--sans);font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(201,163,90,.4)}
+  .foot-links a:hover{color:#fff}
+
   /* contact */
   .contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px}
   @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:36px}}
@@ -311,13 +354,12 @@
     <a class="brand" href="#top"><span class="mark"></span>L'Odyssée Express</a>
     <nav aria-label="Navigation principale">
       <ul class="nav-links">
-        <li><a href="#initiative">L'initiative</a></li>
+        <li><a href="#initiative">Présentation</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#yaounde2026">Édition 2026</a></li>
-        <li><a href="#laureats">Lauréats</a></li>
-        <li><a href="#editions">Calendrier</a></li>
+        <li><a href="#realisations">Réalisations</a></li>
+        <li><a href="#actualites">Actualités</a></li>
         <li><a href="#partenaires">Partenaires</a></li>
-        <li><a href="#fondateur">Le fondateur</a></li>
+        <li><a href="#fondateur">Fondateur</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -334,7 +376,7 @@
     <p class="hero-lead">L'Odyssée Express fait travailler ensemble des étudiants, des institutions et des entreprises sur des solutions concrètes de transition écologique — puis accompagne les équipes retenues jusqu'à la création de leur entreprise.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="#services">Nos services B2B</a>
-      <a class="btn btn-ghost" href="#yaounde2026">Voir l'édition inaugurale</a>
+      <a class="btn btn-ghost" href="#realisations">Voir les réalisations</a>
     </div>
 
     <!-- Signature : l'axe des éditions -->
@@ -368,8 +410,8 @@
 <section class="band-paper" id="initiative">
   <div class="wrap">
     <div class="sec-head reveal">
-      <p class="eyebrow eyebrow--ink">L'initiative</p>
-      <h2>Une méthode née à Bruxelles, éprouvée en Afrique centrale.</h2>
+      <p class="eyebrow eyebrow--ink">Présentation</p>
+      <h2>Cabinet indépendant de gestion de projets et d'innovation environnementale.</h2>
       <p class="lead muted">L'Odyssée Express est un cabinet indépendant fondé par Gédéon Sylvestre Tchuisseu, étudiant ingénieur à l'École polytechnique de Bruxelles (ULB). Il reprend la méthodologie d'éco-conception du concours <em>L'Odyssée de l'Objet</em> du Service public de Wallonie et l'applique à des problèmes environnementaux urbains, là où ils se posent.</p>
     </div>
 
@@ -386,8 +428,8 @@
       </div>
       <div class="pillar reveal">
         <span class="tag">Pilier 03</span>
-        <h3>Odyssée Smart City</h3>
-        <p>La plateforme technique de l'initiative, dont <em>Yaoundé Propreté</em> est le premier module : tracer, mesurer et rémunérer la gestion des déchets à l'échelle d'un quartier, puis étendre la même architecture à d'autres services urbains.</p>
+        <h3>Solutions sur mesure</h3>
+        <p>Conception de kits, outils numériques et systèmes de collecte intelligente pour les collectivités et les organisations — de l'analyse du besoin jusqu'aux spécifications techniques et au déploiement encadré.</p>
       </div>
     </div>
   </div>
@@ -468,13 +510,13 @@
   </div>
 </section>
 
-<!-- ============ ÉDITION 2026 ============ -->
-<section class="band-alt" id="yaounde2026">
+<!-- ============ RÉALISATIONS ============ -->
+<section class="band-alt" id="realisations">
   <div class="wrap">
     <div class="sec-head reveal">
-      <p class="eyebrow eyebrow--ink">Édition inaugurale · Yaoundé, 3–4 juillet 2026</p>
-      <h2>Ce que l'initiative a déjà livré.</h2>
-      <p class="lead muted">Conçue depuis Bruxelles, financée par le Bureau étudiant de Polytechnique et le Cercle polytechnique de Bruxelles (ULB), la première édition s'est tenue à la Cité Verte, dans la commune de Yaoundé II. Une journée de collecte de données environnementales avec les habitants, puis un sprint d'innovation de dix heures conclu par un Grand Oral devant un jury officiel.</p>
+      <p class="eyebrow eyebrow--ink">Réalisations</p>
+      <h2>Ce que le cabinet a déjà livré.</h2>
+      <p class="lead muted">Programmes conçus depuis Bruxelles et exécutés sur le terrain — avec partenaires institutionnels attestés, livrables documentés et équipes lauréates sous convention d'accompagnement.</p>
     </div>
 
     <div class="facts reveal">
@@ -484,72 +526,119 @@
       <div class="fact"><span class="n">3</span><span class="l">Conventions d'incubation signées</span></div>
     </div>
 
-    <aside class="pub reveal" aria-label="Retombée média">
-      <span class="pub-k">Publication · Ambassade de Belgique au Cameroun</span>
-      <p>L'Ambassade de Belgique au Cameroun a publié des photos de l'édition inaugurale sur son compte Facebook.</p>
-      <a href="https://www.facebook.com/share/p/1by2CAcGKE/" target="_blank" rel="noopener noreferrer">Voir la publication sur Facebook</a>
-    </aside>
-  </div>
-</section>
-
-<!-- ============ LAURÉATS ============ -->
-<section class="band-paper" id="laureats">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <p class="eyebrow eyebrow--ink">Les équipes accompagnées</p>
-      <h2>Trois projets sous convention.</h2>
-      <p class="lead muted">Chaque équipe lauréate est accompagnée pendant vingt-quatre mois. L'accompagnement est contractuel : les porteurs conservent l'intégralité de leur propriété intellectuelle et la totalité du pouvoir de gestion sur leur projet.</p>
+    <div class="real-grid reveal">
+      <article class="real-item">
+        <span class="rt">Yaoundé · 3–4 juillet 2026 · Livré</span>
+        <h3>Green Hackathon Yaoundé #1</h3>
+        <p>Opération Quartier Propre à la Cité Verte (Yaoundé II), puis sprint d'innovation de dix heures au LTIC de Yaoundé, conclu par un Grand Oral devant jury officiel.</p>
+      </article>
+      <article class="real-item">
+        <span class="rt">Incubation · 24 mois</span>
+        <h3>Trois équipes lauréates</h3>
+        <p>BIOVALOR Yaoundé, GIC Digital et Green Dream Team — accompagnement contractuel avec préservation intégrale de la propriété intellectuelle des porteurs.</p>
+      </article>
+      <article class="real-item">
+        <span class="rt">Production documentaire</span>
+        <h3>Magazine officiel · Édition 2026</h3>
+        <p>Rapport de quinze pages : retour sur l'édition, partenaires institutionnels, opération terrain et perspectives 2027.</p>
+      </article>
+      <article class="real-item">
+        <span class="rt">Calendrier · 2026–2027</span>
+        <h3>Réplication du format</h3>
+        <p>Yaoundé #2 (déc. 2026), Kinshasa (avr. 2027) et Brussels Green Hackathon (nov. 2027) — circuit annuel établi.</p>
+      </article>
     </div>
 
-    <div class="grid g3">
-      <div class="laureat reveal">
-        <p class="role">Lauréat · Édition 2026</p>
-        <h3>BIOVALOR Yaoundé</h3>
-        <p>Valorisation de la matière organique issue des déchets ménagers du quartier.</p>
-      </div>
-      <div class="laureat reveal">
-        <p class="role">Lauréat · Édition 2026</p>
-        <h3>GIC Digital</h3>
-        <p>Outils numériques au service de l'organisation de la collecte et du suivi des flux.</p>
-      </div>
-      <div class="laureat reveal">
-        <p class="role">Lauréat · Édition 2026</p>
-        <h3>Green Dream Team</h3>
-        <p>Solutions de réemploi et de sensibilisation portées à l'échelle du voisinage.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CALENDRIER ============ -->
-<section class="band-paper" id="editions">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <p class="eyebrow eyebrow--ink">Calendrier des éditions</p>
-      <h2>Le circuit annuel.</h2>
-      <p class="lead muted">Une édition par ville, une ville par saison. Les lauréats des éditions africaines sont invités à présenter leurs projets lors de l'édition bruxelloise.</p>
+    <div class="sec-head reveal" style="margin-bottom:32px">
+      <p class="eyebrow eyebrow--ink">Photos des événements</p>
+      <h2>Retour visuel sur l'édition inaugurale.</h2>
+      <p class="lead muted">Photographies publiées par l'Ambassade de Belgique au Cameroun et documentées dans le magazine officiel de l'édition 2026.</p>
     </div>
 
-    <ul class="editions">
-      <li class="edition reveal">
+    <div class="gallery reveal">
+      <figure class="gallery-card">
+        <img src="https://scontent-bru2-1.xx.fbcdn.net/v/t39.30808-6/739492165_1336585528660147_7330400930493993127_n.jpg?stp=dst-jpg_tt6&amp;cstp=mx940x788&amp;ctp=p600x600&amp;_nc_cat=101&amp;ccb=1-7&amp;_nc_sid=cae128&amp;_nc_ohc=DJZ2HsE2RfMQ7kNvwEdb2PK&amp;_nc_zt=23&amp;_nc_ht=scontent-bru2-1.xx&amp;oh=00_AQFJXZyT1C941S4UbuIwSDFdqAfPXgYb9sNLLr2t3xtcxw&amp;oe=6A7A3434" alt="Green Hackathon Yaoundé 2026 — photo publiée par l'Ambassade de Belgique au Cameroun" loading="lazy" width="600" height="788">
+        <figcaption class="gallery-cap">
+          <span class="gs">Source · Ambassade de Belgique</span>
+          <p>Publication Facebook de l'édition inaugurale — jury et participants.</p>
+          <a href="https://www.facebook.com/share/p/1by2CAcGKE/" target="_blank" rel="noopener noreferrer">Voir la publication</a>
+        </figcaption>
+      </figure>
+      <figure class="gallery-card">
+        <div class="gallery-placeholder">Opération Quartier Propre<br>Cité Verte · Yaoundé II</div>
+        <figcaption class="gallery-cap">
+          <span class="gs">3 juillet 2026</span>
+          <p>Mobilisation d'éco-bénévoles, sensibilisation au tri à la source et collecte de données de terrain.</p>
+          <a href="https://www.facebook.com/share/p/1by2CAcGKE/" target="_blank" rel="noopener noreferrer">Photos sur Facebook</a>
+        </figcaption>
+      </figure>
+      <figure class="gallery-card">
+        <div class="gallery-placeholder">Grand Oral · LTIC Yaoundé<br>9 équipes · Jury officiel</div>
+        <figcaption class="gallery-cap">
+          <span class="gs">4 juillet 2026</span>
+          <p>Sprint d'innovation de dix heures et remise des prix devant représentants institutionnels.</p>
+          <a href="https://www.facebook.com/share/p/1by2CAcGKE/" target="_blank" rel="noopener noreferrer">Photos sur Facebook</a>
+        </figcaption>
+      </figure>
+    </div>
+
+    <ul class="editions reveal" style="margin-top:48px" id="calendrier">
+      <li class="edition">
         <span class="date">3–4 juillet 2026</span>
         <span><span class="title">Green Hackathon Yaoundé #1</span><span class="place">Cité Verte, Yaoundé II — Cameroun</span></span>
         <span class="status done">Livré</span>
       </li>
-      <li class="edition reveal">
+      <li class="edition">
         <span class="date">19 décembre 2026</span>
         <span><span class="title">Green Hackathon Yaoundé #2</span><span class="place">Yaoundé — Cameroun</span></span>
         <span class="status next">Prochaine</span>
       </li>
-      <li class="edition reveal">
+      <li class="edition">
         <span class="date">3 avril 2027</span>
         <span><span class="title">Green Hackathon Kinshasa</span><span class="place">Kinshasa — République démocratique du Congo</span></span>
         <span class="status plan">Programmée</span>
       </li>
-      <li class="edition reveal">
+      <li class="edition">
         <span class="date">6 novembre 2027</span>
         <span><span class="title">Brussels Green Hackathon</span><span class="place">Région de Bruxelles-Capitale — Belgique</span></span>
         <span class="status plan">Programmée</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ ACTUALITÉS ============ -->
+<section class="band-paper" id="actualites">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow eyebrow--ink">Actualités</p>
+      <h2>Dernières nouvelles du cabinet.</h2>
+    </div>
+
+    <ul class="news">
+      <li class="news-item reveal">
+        <span class="nd">Juil. 2026</span>
+        <div>
+          <h3>L'Ambassade de Belgique publie les photos de l'édition inaugurale</h3>
+          <p>L'Ambassade de Belgique au Cameroun a relayé sur Facebook le Green Hackathon Yaoundé 2026, réunissant étudiants, jury officiel et représentants institutionnels.</p>
+          <a href="https://www.facebook.com/share/p/1by2CAcGKE/" target="_blank" rel="noopener noreferrer">Lire la publication</a>
+        </div>
+      </li>
+      <li class="news-item reveal">
+        <span class="nd">Juil. 2026</span>
+        <div>
+          <h3>Première édition livrée à Yaoundé</h3>
+          <p>Opération Quartier Propre et Green Hackathon conclus avec 9 équipes, 4 partenaires institutionnels et 3 conventions d'incubation signées.</p>
+          <a href="#realisations">Voir les réalisations</a>
+        </div>
+      </li>
+      <li class="news-item reveal">
+        <span class="nd">Déc. 2026</span>
+        <div>
+          <h3>Green Hackathon Yaoundé #2 — date confirmée</h3>
+          <p>Deuxième édition programmée le samedi 19 décembre 2026 à Yaoundé, dans la continuité du format éprouvé en juillet.</p>
+          <a href="#calendrier">Calendrier des éditions</a>
+        </div>
       </li>
     </ul>
   </div>
@@ -559,8 +648,9 @@
 <section class="band-alt" id="partenaires">
   <div class="wrap">
     <div class="sec-head reveal">
-      <p class="eyebrow eyebrow--ink">Soutiens institutionnels</p>
+      <p class="eyebrow eyebrow--ink">Partenaires confirmés</p>
       <h2>Quatre institutions ont accompagné la première édition.</h2>
+      <p class="lead muted">Conformément à notre charte de transparence, seuls les partenaires dont la collaboration ou le soutien est attesté par écrit sont mentionnés ici.</p>
     </div>
 
     <div class="partners reveal">
@@ -641,12 +731,48 @@
     </div>
     <div class="reveal">
       <ul class="coord">
-        <li><span class="k">Courriel</span><a href="mailto:gedeon.tchuisseu@odyssee-express.org">gedeon.tchuisseu@odyssee-express.org</a></li>
-        <li><span class="k">Téléphone</span><a href="tel:+32465339448">+32 465 33 94 48</a></li>
-        <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/gedeon-sylvestre-tchuisseu-37b312308" target="_blank" rel="noopener noreferrer">gedeon-sylvestre-tchuisseu</a></li>
-        <li><span class="k">Siège</span>Boulevard de la Cambre 32/48<br>1000 Bruxelles, Belgique</li>
-        <li><span class="k">Terrain</span>Yaoundé, Cameroun</li>
+        <li><span class="k">Entrepreneur</span>Gédéon Sylvestre Tchuisseu</li>
+        <li><span class="k">Courriel professionnel</span><a href="mailto:gedeon.tchuisseu@odyssee-express.org">gedeon.tchuisseu@odyssee-express.org</a></li>
+        <li><span class="k">Courriel académique</span><a href="mailto:gedeon.sylvestre.tchuisseu@ulb.be">gedeon.sylvestre.tchuisseu@ulb.be</a></li>
+        <li><span class="k">Téléphone · WhatsApp</span><a href="tel:+32465339448">+32 465 33 94 48</a></li>
+        <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/gedeon-sylvestre-tchuisseu-37b312308" target="_blank" rel="noopener noreferrer">linkedin.com/in/gedeon-sylvestre-tchuisseu</a></li>
+        <li><span class="k">Site web</span><a href="https://odyssee-express.org">odyssee-express.org</a></li>
+        <li><span class="k">Siège d'exercice</span>Boulevard de la Cambre 32/48<br>1000 Bruxelles, Belgique</li>
+        <li><span class="k">Activité terrain</span>Yaoundé, Cameroun</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENTIONS LÉGALES ============ -->
+<section class="band-paper" id="mentions-legales">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow eyebrow--ink">Mentions légales</p>
+      <h2>Informations légales du site.</h2>
+    </div>
+
+    <div class="legal reveal">
+      <h3>Éditeur du site</h3>
+      <p><strong>Gédéon Sylvestre Tchuisseu</strong> — entrepreneur indépendant, fondateur de L'Odyssée Express.<br>
+      Activité : gestion de projets et innovation environnementale.<br>
+      Siège d'exercice : Boulevard de la Cambre 32/48, 1000 Bruxelles, Belgique.<br>
+      Courriel : <a href="mailto:gedeon.tchuisseu@odyssee-express.org">gedeon.tchuisseu@odyssee-express.org</a> · Tél. : <a href="tel:+32465339448">+32 465 33 94 48</a></p>
+
+      <h3>Responsable de la publication</h3>
+      <p>Gédéon Sylvestre Tchuisseu.</p>
+
+      <h3>Hébergement</h3>
+      <p>Ce site est hébergé par Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis — <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">vercel.com</a>.</p>
+
+      <h3>Propriété intellectuelle</h3>
+      <p>L'ensemble des contenus de ce site (textes, identité visuelle, méthodologie, documents) est protégé par le droit d'auteur. Toute reproduction sans autorisation écrite préalable est interdite. Les photographies publiées restent la propriété de leurs auteurs respectifs (voir source indiquée sous chaque image).</p>
+
+      <h3>Données personnelles</h3>
+      <p>Ce site ne collecte aucune donnée personnelle via formulaire intégré. Les contacts s'effectuent par courriel ou téléphone, à l'initiative de l'utilisateur. Conformément au RGPD, vous pouvez exercer vos droits d'accès, de rectification ou de suppression en écrivant à <a href="mailto:gedeon.tchuisseu@odyssee-express.org">gedeon.tchuisseu@odyssee-express.org</a>.</p>
+
+      <h3>Liens externes</h3>
+      <p>Le site peut contenir des liens vers des sites tiers (réseaux sociaux, partenaires institutionnels). L'Odyssée Express n'exerce aucun contrôle sur le contenu de ces sites et décline toute responsabilité quant à leur contenu.</p>
     </div>
   </div>
 </section>
@@ -654,9 +780,19 @@
 </main>
 
 <footer>
-  <div class="wrap foot">
-    <span class="sm">L'ODYSSÉE EXPRESS · CABINET INDÉPENDANT · BRUXELLES ↔ YAOUNDÉ</span>
-    <span class="sm">Gédéon Sylvestre Tchuisseu · Entrepreneur · Région de Bruxelles-Capitale</span>
+  <div class="wrap">
+    <div class="foot">
+      <span class="sm">L'ODYSSÉE EXPRESS · CABINET INDÉPENDANT · BRUXELLES ↔ YAOUNDÉ</span>
+      <span class="sm">Gédéon Sylvestre Tchuisseu · Entrepreneur · Région de Bruxelles-Capitale</span>
+    </div>
+    <nav class="foot-links" aria-label="Liens pied de page">
+      <a href="#initiative">Présentation</a>
+      <a href="#services">Services</a>
+      <a href="#realisations">Réalisations</a>
+      <a href="#actualites">Actualités</a>
+      <a href="#mentions-legales">Mentions légales</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </div>
 </footer>
 
